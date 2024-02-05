@@ -4,7 +4,8 @@ MLX = ./minilibx-linux/libmlx_Linux.a
 
 NAME = cub3D
 
-SRCS =	src/free.c			\
+SRCS =	src/data.c			\
+		src/free.c			\
 		src/main.c			\
 		src/map_check.c		\
 		src/signal.c		\

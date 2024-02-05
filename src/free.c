@@ -1,8 +1,13 @@
 #include "../incl/cub3d.h"
 
-void	ft_free_all(t_data *data)
+int ft_free_window(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
-	free(data->mlx_ptr);
+	if (data->mlx_ptr)
+		mlx_destroy_display(data->mlx_ptr);
+	if (data->mlx_ptr)
+		free(data->mlx_ptr);
+	return (1);
 }
