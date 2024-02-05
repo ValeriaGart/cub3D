@@ -6,16 +6,12 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:15:54 by ynguyen           #+#    #+#             */
-/*   Updated: 2024/01/06 20:39:03 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:42:24 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -24,12 +20,19 @@
 # include <sys/types.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000000
+# endif
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
 
+char				*get_next_line(int fd, int freee);
+int					ft_int_strchr(const char *s, int c);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
 long				ft_atol(char *str);
 char				*ft_strdup(const char *s);
 int					ft_isalpha(int c);

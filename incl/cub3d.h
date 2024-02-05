@@ -20,33 +20,48 @@
 #define LEFT_KEY 65361
 #define RIGHT_KEY 65363
 
-typedef struct s_data
-{
-	void *mlx_ptr;
-	void *win_ptr;
-} t_data;
-
 typedef struct s_map
 {
-	char **map;
+	char	*NO;
+	char	*SO;
+	char	*EA;
+	char	*WE;
+	char	*up_colour;
+	char	*down_colour;
+	char 	**map;
 } t_map;
 
+typedef struct s_data
+{
+	void 	*mlx_ptr;
+	void 	*win_ptr;
+	int		line_num;
+	t_map	*map;
+} t_data;
+
 /* data.c */
-void ft_set_data(t_data *data);
+void 	ft_set_data(t_data *data);
+
+/* error.c */
+void	*ft_error_msg(char *err);
 
 /* free.c */
-int ft_free_window(t_data *data);
+void	*ft_map_free(t_map *map);
+int 	ft_free_window(t_data *data);
 
 /* main_act.c */
-int ft_main_act(t_data *data);
+int 	ft_main_act(t_data *data);
 
 /* map_check.c */
-int ft_map_check(char **av, t_data *data);
+int 	ft_map_check(char **av, t_data *data);
+
+/* map_store.c */
+t_map	*ft_store_map(char **av, t_data *data);
 
 /* signal.c */
-int handle_x(t_data *data);
+int 	handle_x(t_data *data);
 
 /* window.c */
-int ft_open_window(t_data *data);
+int 	ft_open_window(t_data *data);
 
 #endif

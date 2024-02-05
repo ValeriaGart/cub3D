@@ -1,20 +1,27 @@
 #include "../incl/cub3d.h"
 
-int ft_store_map(char *av, t_map *map)
+void	ft_put_map(char **map)
 {
-	char **map;
-	int i;
-	int y;
+	int	i;
 
 	i = 0;
-	y = 0;
+	while (map[i])
+	{
+		ft_putstr_fd(map[i], 1);
+		i++;
+	}
+	ft_putstr_fd("\n", 1);
 }
 
 int ft_map_check(char **av, t_data *data)
 {
-	t_map map;
+	t_map *map;
 
-	if (ft_store_map(av, &map))
+	data->line_num = 14;
+	map = ft_store_map(av, data);
+	if (!map)
 		return (1);
+	ft_put_map(map->map);
+	data->map = map;
 	return (0);
 }
