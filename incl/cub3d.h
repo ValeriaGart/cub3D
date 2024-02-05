@@ -31,11 +31,18 @@ typedef struct s_map
 	char 	**map;
 } t_map;
 
+typedef struct s_mini_w
+{
+	float	py;
+	float	px;
+} t_mini_w;
+
 typedef struct s_data
 {
 	void 	*mlx_ptr;
 	void 	*win_ptr;
 	int		line_num;
+	t_mini_w	*mini;
 	t_map	*map;
 } t_data;
 
@@ -48,9 +55,11 @@ void	*ft_error_msg(char *err);
 /* free.c */
 void	*ft_map_free(t_map *map);
 int 	ft_free_window(t_data *data);
+int		ft_free_all(t_data *data);
 
 /* main_act.c */
 int 	ft_main_act(t_data *data);
+int		ft_main_loop(t_data *data);
 
 /* map_check.c */
 int 	ft_map_check(char **av, t_data *data);
@@ -58,8 +67,12 @@ int 	ft_map_check(char **av, t_data *data);
 /* map_store.c */
 t_map	*ft_store_map(char **av, t_data *data);
 
+/* mini_w.c */
+void	ft_mini_w(t_data *data);
+
 /* signal.c */
 int 	handle_x(t_data *data);
+int		handle_keypress(int keysym, t_data *data);
 
 /* window.c */
 int 	ft_open_window(t_data *data);

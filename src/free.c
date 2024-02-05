@@ -39,3 +39,9 @@ int ft_free_window(t_data *data)
 		free(data->mlx_ptr);
 	return (1);
 }
+
+int ft_free_all(t_data *data)
+{
+	ft_map_free(data->map);
+	return (ft_free_window(data));
+}
