@@ -7,11 +7,13 @@ NAME = cub3D
 SRCS =	src/data.c			\
 		src/error.c			\
 		src/free.c			\
+		src/init.c			\
 		src/main_act.c		\
 		src/main.c			\
 		src/map_check.c		\
 		src/map_store.c		\
 		src/signal.c		\
+		src/utils.c			\
 		src/window.c
 
 CC = cc
