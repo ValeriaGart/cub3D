@@ -11,7 +11,7 @@ void	ft_map_set_zero(t_map **map)
 	(*map)->map = NULL;
 }
 
-char	*ft_skip_empty_lines(fd)
+char	*ft_skip_empty_lines(int fd)
 {
 	char	*ret;
 
@@ -51,7 +51,6 @@ char	*ft_direction_texture(int fd, t_map **map)
 	return (NULL);
 }
 
-//TODO: count lines of map to know how much malloc. Store in t_data
 void	*ft_twod_map(int fd, t_map **map, t_data *data)
 {
 	int	i;

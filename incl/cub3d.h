@@ -20,6 +20,9 @@
 #define LEFT_KEY 65361
 #define RIGHT_KEY 65363
 
+#define	WIDTH_X 640
+#define	HEIGHT_Y 480
+
 typedef struct s_map
 {
 	char	*NO;
@@ -31,18 +34,21 @@ typedef struct s_map
 	char 	**map;
 } t_map;
 
-typedef struct s_mini_w
+typedef struct s_img
 {
-	float	py;
-	float	px;
-} t_mini_w;
+	void	*img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_size;
+	int		endian;
+} t_img;
 
 typedef struct s_data
 {
 	void 	*mlx_ptr;
 	void 	*win_ptr;
 	int		line_num;
-	t_mini_w	*mini;
+	t_img	img;
 	t_map	*map;
 } t_data;
 
@@ -66,9 +72,6 @@ int 	ft_map_check(char **av, t_data *data);
 
 /* map_store.c */
 t_map	*ft_store_map(char **av, t_data *data);
-
-/* mini_w.c */
-void	ft_mini_w(t_data *data);
 
 /* signal.c */
 int 	handle_x(t_data *data);

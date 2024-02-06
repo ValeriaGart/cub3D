@@ -1,5 +1,6 @@
 #include "../incl/cub3d.h"
 
+//TODO: Yen, store the numbers for me please
 /*int rgb_to_int(double r, double g, double b)
 {
     int color = 0;
@@ -9,29 +10,28 @@
     return (color);
 }*/
 
-int	ft_put_updown(t_data *data)
+void    ft_put_img_on_window(t_data *data)
 {
-	int	i;
-    int j;
+    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+    mlx_destroy_image(data->mlx_ptr, data->img.img);
+    data->img.img = NULL;
+}
+
+int	ft_draw_updown(t_img *img, t_data *data)
+{
+	unsigned int    *ptr;
+    unsigned int    i;
 
     if (data->win_ptr == NULL)
         return (1);
-    i = 0;
-    while (i < 480/2)
-    {
-        j = 0;
-        while (j < 640)
-            mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0xBFEFFF);
-        ++i;
-    }
-	i = 480/2 ;
-    while (i < 480/2 + 480/2 )
-    {
-        j = 0;
-        while (j < 640)
-            mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0xCDAA7D);
-        ++i;
-    }
+    ptr = (unsigned int *) img->addr;
+    i = WIDTH_X * HEIGHT_Y / 2 + 1;
+    while (--i > 0)
+        *ptr++ =  0xBFEFFF;
+    i = WIDTH_X * HEIGHT_Y / 2 + 1;
+    while (--i > 0)
+        *ptr++ = 0xCDAA7D;
+    /* TODO: Yen, i need it for the small window
 	i = 480 - 80;
     while (i < (480 - 80) + 480/2 )
     {
@@ -45,8 +45,7 @@ int	ft_put_updown(t_data *data)
 			j++;
 		}
         ++i;
-    }
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, data->mini->px, data->mini->py, 0x0000CD);
+    }*/
     return (0);
 }
 
@@ -55,8 +54,9 @@ void	ft_put_the_map(t_data *data, char **map)
 	int	i;
     int j;
 
+    (void)map;
     if (data->win_ptr == NULL)
-        return (1);
+        return ;
     i = 14;
     while (i < 480/2)
     {
@@ -69,17 +69,7 @@ void	ft_put_the_map(t_data *data, char **map)
 
 int ft_main_act(t_data *data)
 {
-	ft_put_updown(data);
-	ft_put_the_map(data, data->map->map);
-    /*while (!done())
-    {
-        ;
-    }*/
+	ft_draw_updown(&(data->img), data);
+    ft_put_img_on_window(data);
     return (0);
-}
-int	ft_main_loop(t_data *data)
-{
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, 200, 200, 0x0000CD);
-	ft_mini_w(data);
-	return (0);
 }

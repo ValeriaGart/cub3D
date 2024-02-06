@@ -37,6 +37,8 @@ int ft_free_window(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 	if (data->mlx_ptr)
 		free(data->mlx_ptr);
+	if (data->img.img)
+		mlx_destroy_image(data->win_ptr, data->img.img);
 	return (1);
 }
 
