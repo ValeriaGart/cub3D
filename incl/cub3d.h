@@ -26,6 +26,7 @@ typedef struct s_map
 	char	*SO;
 	char	*EA;
 	char	*WE;
+	char	*path;
 	char	*up_colour;
 	char	*down_colour;
 	char 	**map;
@@ -57,12 +58,15 @@ void	*ft_map_free(t_map *map);
 int 	ft_free_window(t_data *data);
 int		ft_free_all(t_data *data);
 
+//init.c
+int init_map(t_map *map);
+
 /* main_act.c */
 int 	ft_main_act(t_data *data);
 int		ft_main_loop(t_data *data);
 
-/* map_check.c */
-int 	ft_map_check(char **av, t_data *data);
+// map_check.cif (line[0] == 'R')
+int		ft_map_check(int ac, char **av, t_map *map);
 
 /* map_store.c */
 t_map	*ft_store_map(char **av, t_data *data);
@@ -73,6 +77,9 @@ void	ft_mini_w(t_data *data);
 /* signal.c */
 int 	handle_x(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
+
+//utils.c
+int		ft_strcmp(char *s1, char *s2);
 
 /* window.c */
 int 	ft_open_window(t_data *data);

@@ -50,11 +50,12 @@ int	ft_put_updown(t_data *data)
     return (0);
 }
 
-void	ft_put_the_map(t_data *data, char **map)
+int	ft_put_the_map(t_data *data, char **map)
 {
 	int	i;
     int j;
 
+    (void)map;
     if (data->win_ptr == NULL)
         return (1);
     i = 14;
@@ -65,6 +66,7 @@ void	ft_put_the_map(t_data *data, char **map)
             mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0xBFEFFF);
         ++i;
     }
+    return (0);
 }
 
 int ft_main_act(t_data *data)

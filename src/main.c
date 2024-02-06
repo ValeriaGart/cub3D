@@ -5,16 +5,15 @@ int main(int ac, char **av)
 	t_data data;
 	t_mini_w	mini;
 
-	if (ac != 2)
-	{
-		ft_putstr_fd("Error\nWrong arguments 😰\n", 2);
+	ft_set_data(&data);
+	data.map = malloc(sizeof(t_map));
+	if (!data.map)
+		return (ft_error_msg("Error\nMalloc in t_map failed\n"));
+	init_map(data.map);
+	if (ft_map_check(ac, av, data.map))
 		return (1);
-	}
 	mini.py = 480 - 40;
 	mini.px = 60;
-	ft_set_data(&data);
-	if (ft_map_check(av, &data))
-		return (1);
 	printf("The game is running! 🤩\n");
 	if (ft_open_window(&data))
 		return (1);
