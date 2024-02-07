@@ -1,12 +1,19 @@
 #include "../incl/cub3d.h"
 
-int	check_ac(int ac)
+int	check_ac(int ac, t_data *data)
 {
 	if (ac != 2)
 	{
 		ft_putstr_fd("Error\nWrong arguments 😰\n", 2);
 		return (1);
 	}
+	data->map = malloc(sizeof(t_map));
+	if (!data->map)
+	{
+		ft_putstr_fd("Error\nMalloc in t_map failed\n", 2);
+		return (1);
+	}
+	init_map(data->map);
 	return (0);
 }
 
@@ -24,7 +31,7 @@ int	check_empty_map(char **av)
 	}
 	i = 0;
 	line = NULL;
-	while (get_next_line(fd, line[i]) > 0)
+	while (get_next_line(fd, line[i]) != NULL)
 	{
 		if (line[0] != '\0')
 			return (0);
@@ -52,23 +59,55 @@ int	check_map_name(char **av)
 	return (0);
 }
 
+// int	check_colour(t_map *map, char *line)
+// {
+// 	int		red;
+// 	int		green;
+// 	int		blue;
+
+// 	if (line[0] == ',')
+// 		return (1);
+// 	red = ft_atoi(line + 2);
+//     return (red << 16 | green << 8 | blue);
+// }
+
+int	ft_set_colour(t_map *map, char *line)
+{
+	if (line[0] == 'C')
+	{
+		map->up_colour = ft_strdup(line + 1);
+		// map->ceil_colour = check_colour(map, map->ceil_colour);
+	}
+	else if (line[0] == 'F')
+	{
+		map->down_colour = ft_strdup(line + 1);
+		// map->floor_colour = check_colour(map, map->floor_colour);
+	}
+	// if (map->up_colour == 1 || map->down_colour == 1)
+	// {
+	// 	ft_putstr_fd("Error\nColour is default\n", 2);
+	// 	return (1);
+	// }
+	else
+		return (1);
+	return (0);
+}
+
 //C for color, F for floor, SO for south, NO for north, WE for west, EA for east
 int	check_inforead(char **av, t_map *map)
 {
 	int		fd;
 	char 	*line;
-	int 	i;
 
 	fd = open(av[1], O_RDONLY);
-	i = 0;
 	line = NULL;
 	while (1)
 	{
-		line = get_next_line(fd, 1);
+		line = get_next_line(fd, 0);
 		if (line == NULL)
 			break;
-		// else if (line[0] == 'C' || line[0] == 'F')
-		// 	return (0);// ft_set_colour(data, line);
+		else if (line[0] == 'C' || line[0] == 'F')
+			ft_set_colour(map, line);
 		else if (map->SO == NULL && (line[0] == 'S' && line[1] == 'O'))
 			map->SO = ft_strdup(line + 2);
 		else if (map->NO == NULL && (line[0] == 'N' && line[1] == 'O'))
@@ -77,7 +116,6 @@ int	check_inforead(char **av, t_map *map)
 			map->WE = ft_strdup(line + 2);
 		else if (map->EA == NULL && (line[0] == 'E' && line[1] == 'A'))
 			map->EA = ft_strdup(line + 2);
-		free(line);
 	}
 	close(fd);
 	ft_putstr_fd("Error\nNo map info found\n", 2);
@@ -109,7 +147,7 @@ int	check_symbols_path(char *line, int i)
 }
 
 //check path after the directions
-int	check_path(t_map *map)
+int	check_path_SO(t_map *map)
 {
 	char 	*line;
 	int 	i;
@@ -134,18 +172,13 @@ int	check_path(t_map *map)
 	return (0);
 }
 
-//TODO: Yen, I moved map assignment here from main
 int	ft_map_check(int ac, char **av, t_data *data)
 {
-	data->map = malloc(sizeof(t_map));
-	if (!data->map)
-		return (ft_putstr_fd("Error\nMalloc in t_map failed\n", 2));
-	init_map(data->map);
-	if (check_ac(ac) && check_empty_map(av))
+	if (check_ac(ac, data) && check_empty_map(av))
 		return (1);
-	else if (check_inforead(av, data->map))
+	else if (check_map_name(av) && check_inforead(av, data->map))
 		return (1);
-	else if (check_map_name(av) && check_path(data->map))
+	else if (check_path_SO(data->map))
 		return (1);
 	return (0);
 }

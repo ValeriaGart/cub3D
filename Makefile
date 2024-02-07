@@ -24,12 +24,12 @@ INCL = -I ./incl
 
 OBJS = $(SRCS:.c=.o)
 
-$(NAME): $(OBJS) $(OLINE)
-		$(MAKE) -C ./libft
-		$(MAKE) -C ./minilibx-linux
-		$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lX11 -lXext -lm -lz
-
 all:    $(NAME)	
+
+$(NAME): $(OBJS) $(OLINE)
+				$(MAKE) -C ./libft
+				$(MAKE) -C ./minilibx-linux
+				$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lX11 -lXext -lm -lz
 
 clean:
 		$(MAKE) clean -C ./libft

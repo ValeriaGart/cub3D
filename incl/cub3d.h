@@ -29,11 +29,12 @@ typedef struct s_map
 	char	*SO;
 	char	*EA;
 	char	*WE;
-	char	*path;
 	char	*up_colour;
 	char	*down_colour;
+	int		ceil_colour;
+	int		floor_colour;
 	char 	**map;
-} t_map;
+} 			t_map;
 
 typedef struct s_img
 {
@@ -42,7 +43,7 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_size;
 	int		endian;
-} t_img;
+} 			t_img;
 
 typedef struct s_data
 {
@@ -51,7 +52,7 @@ typedef struct s_data
 	int		line_num;
 	t_img	img;
 	t_map	*map;
-} t_data;
+}			t_data;
 
 /* data.c */
 void 	ft_set_data(t_data *data);
