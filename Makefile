@@ -4,16 +4,17 @@ MLX = ./minilibx-linux/libmlx_Linux.a
 
 NAME = cub3D
 
-SRCS =	src/data.c			\
-		src/error.c			\
-		src/free.c			\
-		src/init.c			\
-		src/main_act.c		\
-		src/main.c			\
-		src/map_check.c		\
-		src/map_store.c		\
-		src/signal.c		\
-		src/utils.c			\
+SRCS =	src/data.c				\
+		src/error.c				\
+		src/free.c				\
+		src/init.c				\
+		src/main_act.c			\
+		src/main.c				\
+		src/map_check_info.c	\
+		src/map_check.c			\
+		src/map_store.c			\
+		src/signal.c			\
+		src/utils.c				\
 		src/window.c
 
 CC = cc
@@ -26,10 +27,10 @@ OBJS = $(SRCS:.c=.o)
 
 all:    $(NAME)	
 
-$(NAME): $(OBJS) $(OLINE)
-				$(MAKE) -C ./libft
-				$(MAKE) -C ./minilibx-linux
-				$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lX11 -lXext -lm -lz
+$(NAME): $(OBJS) #$(OLINE)
+		$(MAKE) -C ./libft
+		$(MAKE) -C ./minilibx-linux
+		$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lX11 -lXext -lm -lz
 
 clean:
 		$(MAKE) clean -C ./libft

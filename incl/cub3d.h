@@ -25,6 +25,7 @@
 
 typedef struct s_map
 {
+	char	*ln;
 	char	*NO;
 	char	*SO;
 	char	*EA;
@@ -33,6 +34,7 @@ typedef struct s_map
 	char	*down_colour;
 	int		ceil_colour;
 	int		floor_colour;
+	int		fd;
 	char 	**map;
 } 			t_map;
 
@@ -70,9 +72,11 @@ int 	init_map(t_map *map);
 
 /* main_act.c */
 int 	ft_main_act(t_data *data);
-int		ft_main_loop(t_data *data);
 
-// map_check.cif (line[0] == 'R')
+// map_check_info.c
+int		check_path_SO(t_map *map);
+
+// map_check.c
 int		ft_map_check(int ac, char **av, t_data *data);
 
 /* map_store.c */

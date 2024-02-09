@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynguyen <ynguyen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:29:13 by ynguyen           #+#    #+#             */
-/*   Updated: 2024/01/27 11:11:27 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:01:14 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_atoi(const char *nptr)
 	sign = 1;
 	value = 0;
 	i = 0;
+	if (!nptr)
+		return (-1);
 	while (nptr[i] == 32 || (nptr[i] > 8 && nptr[i] < 14))
 		i++;
 	if (nptr[i] == 45 || nptr[i] == 43)
