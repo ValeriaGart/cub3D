@@ -10,6 +10,8 @@ SRCS =	src/data.c				\
 		src/init.c				\
 		src/main_act.c			\
 		src/main.c				\
+		src/map_check_colour.c	\
+		src/map_check_path.c	\
 		src/map_check_info.c	\
 		src/map_check.c			\
 		src/map_store.c			\

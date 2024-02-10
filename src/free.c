@@ -5,18 +5,18 @@ void	*ft_map_free(t_map *map)
 	int i;
 
 	i = -1;
-	if (map->NO)
-		free(map->NO);
-	if (map->SO)
-		free(map->SO);
-	if (map->WE)
-		free(map->WE);
-	if (map->EA)
-		free(map->EA);
-	if (map->up_colour)
-		free(map->up_colour);
-	if (map->down_colour)
-		free(map->down_colour);
+	if (map->nor)
+		free(map->nor);
+	if (map->sou)
+		free(map->sou);
+	if (map->wes)
+		free(map->wes);
+	if (map->eas)
+		free(map->eas);
+	if (map->ceil)
+		free(map->ceil);
+	if (map->floor)
+		free(map->floor);
 	if (map->map)
 	{
 		while (map->map[++i])

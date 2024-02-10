@@ -1,37 +1,37 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <string.h>
-#include <stdio.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <limits.h>
-#include <math.h>
-#include "../libft/libft.h"
-#include "../minilibx-linux/mlx.h"
-#define DOWN_KEY 65364
-#define UP_KEY 65362
-#define LEFT_KEY 65361
-#define RIGHT_KEY 65363
+# include <sys/wait.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <string.h>
+# include <stdio.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <limits.h>
+# include <math.h>
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+# define DOWN_KEY 65364
+# define UP_KEY 65362
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
 
-#define	WIDTH_X 640
-#define	HEIGHT_Y 480
+# define WIDTH_X 640
+# define HEIGHT_Y 480
 
 typedef struct s_map
 {
 	char	*ln;
-	char	*NO;
-	char	*SO;
-	char	*EA;
-	char	*WE;
-	char	*up_colour;
-	char	*down_colour;
+	char	*nor;
+	char	*sou;
+	char	*eas;
+	char	*wes;
+	char	*ceil;
+	char	*floor;
 	int		ceil_colour;
 	int		floor_colour;
 	int		fd;
@@ -68,19 +68,29 @@ int 	ft_free_window(t_data *data);
 int		ft_free_all(t_data *data);
 
 //init.c
-int 	init_map(t_map *map);
+void 	init_map(t_map *map);
 
 /* main_act.c */
 int 	ft_main_act(t_data *data);
 
+//map_check_colour.c
+int		check_colour(t_map *map);
+
 // map_check_info.c
-int		check_path_SO(t_map *map);
+int		start_check_xpm(char *line);
+int		check_inforhead(t_map *map);
+
+//map_check_path.c
+int		check_path_south(t_map *map);
+int		check_path_north(t_map *map);
+int		check_path_west(t_map *map);
+int		check_path_east(t_map *map);
 
 // map_check.c
 int		ft_map_check(int ac, char **av, t_data *data);
 
 /* map_store.c */
-t_map	*ft_store_map(char **av, t_data *data);
+t_map	*ft_store_map(t_data *data);
 
 /* signal.c */
 int 	handle_x(t_data *data);
