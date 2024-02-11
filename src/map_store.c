@@ -11,22 +11,22 @@
 // 	(*map)->map = NULL;
 // }
 
-char	*ft_skip_empty_lines(int fd)
-{
-	char	*ret;
+// char	*ft_skip_empty_lines(int fd)
+// {
+// 	char	*ret;
 
-	ret = get_next_line(fd, 0);
-	if (!ret)
-		return (NULL);
-	while (ft_isspace(ret[0]) || ret[0] == '\n')
-	{
-		free(ret);
-		ret = get_next_line(fd, 0);
-		if (!ret)
-			return (NULL);
-	}
-	return (ret);
-}
+// 	ret = get_next_line(fd, 0);
+// 	if (!ret)
+// 		return (NULL);
+// 	while (ft_isspace(ret[0]) || ret[0] == '\n')
+// 	{
+// 		free(ret);
+// 		// ret = get_next_line(fd, 0);
+// 		if (!ret)
+// 			return (NULL);
+// 	}
+// 	return (ret);
+// }
 
 /*char	*ft_direction_texture(int fd, t_map **map)
 {
@@ -51,34 +51,32 @@ char	*ft_skip_empty_lines(int fd)
 	return (NULL);
 }*/
 
-void	*ft_twod_map(int fd, t_map **map, t_data *data)
-{
-	int	i;
+// void	*ft_twod_map(int fd, t_map **map, t_data *data)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!*map)
-		return (NULL);
-	(*map)->map = ft_calloc(sizeof(char *), (data->line_num + 1));
-	if (!(*map)->map)
-		return (ft_map_free(*map));
-	while (i < data->line_num)
-	{
-		if (i == 0)
-			(*map)->map[i] = ft_skip_empty_lines(fd);
-		else
-			(*map)->map[i] = get_next_line(fd, 0);
-		if (!(*map)->map[i])
-		{
-			while (i >= 0)
-				free((*map)->map[--i]);
-			free((*map)->map);
-			(*map)->map = NULL;
-			return (ft_map_free(*map));
-		}
-		i++;
-	}
-	return (NULL);
-}
+// 	i = 0;
+// 	if (!*map)
+// 		return (NULL);
+// 	(*map)->maps = ft_calloc(sizeof(char *), (data->line_num + 1));
+// 	if (!(*map)->maps)
+// 		return (ft_map_free(*map));
+// 	while (i < data->line_num)
+// 	{
+// 	int i;
+
+// 	i = -1;
+// 		{
+// 			while (i >= 0)
+// 				free((*map)->maps[--i]);
+// 			free((*map)->maps);
+// 			(*map)->maps = NULL;
+// 			return (ft_map_free(*map));
+// 		}
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
 // TODO: I ald checked the fd in ft_check_map.c, do you still think you need it? 
 //TODO: and I ald checked for empty space for infor map, would you still wanna save the map again, since I ald did

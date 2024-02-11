@@ -30,7 +30,7 @@ OBJS = $(SRCS:.c=.o)
 all:    $(NAME)	
 
 $(NAME): $(OBJS) #$(OLINE)
-		$(MAKE) -C ./libft
+		$(MAKE) all bonus -C ./libft
 		$(MAKE) -C ./minilibx-linux
 		$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lX11 -lXext -lm -lz
 

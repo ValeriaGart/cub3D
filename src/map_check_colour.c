@@ -29,25 +29,26 @@ char	*set_colour(char *line, int *i, int *arg, int *comma)
 	return (which_colour);
 }
 
-int	comma_colour(char **line, int i, int arg)
+int	comma_colour(char *line, int i, int arg)
 {
 	int		red;
 	int		green;
 	int		blue;
 	int		comma;
-	int		j;
 
-	j = i;
-	if (line[i][0] == ',')
-		return (1);
+	while (ft_isspace(line[i]))
+	{
+		if (line[i + 1] == ',')
+			return (1);
+		i++;
+	}
 	comma = 0;
-	red = ft_atoi(set_colour(line[i], &i, &arg, &comma));
+	red = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
 	i++;
-	green = ft_atoi(set_colour(line[j], &i, &arg, &comma));
+	green = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
 	i++;
-	blue = ft_atoi(set_colour(line[j], &i, &arg, &comma));
-	if ((red == -1 || green == -1 || blue == -1) || (red < 0
-			|| red > 255) || (green < 0 || green > 255)
+	blue = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
+	if ((red < 0 || red > 255) || (green < 0 || green > 255)
 		|| (blue < 0 || blue > 255) || comma != 2 || arg != 3)
 	{
 		ft_putstr_fd("Error\nColour's number is not valid \n", 2);
@@ -56,19 +57,23 @@ int	comma_colour(char **line, int i, int arg)
 	return (red << 16 | green << 8 | blue);
 }
 
-int	check_colour(t_map *map)
+int	check_colour(t_map *map, int *i, int *j)
 {
-	if (map->ln[0] == 'C')
+	if (map->maps[*i][*j] == 'C')
 	{
-		map->ceil = ft_strdup(map->ln + 1);
-		map->ln++;
-		map->ceil_colour = comma_colour(&map->ln, 0, 0);
+		map->ceil = ft_strdup(map->maps[*i] + 1);
+		if (!map->ceil)
+			return (1);
+		(*j)++;
+		map->ceil_colour = comma_colour(&map->maps[*i][*j], 0, 0);
 	}
-	else if (map->ln[0] == 'F')
+	else if (map->maps[*i][*j] == 'F')
 	{
-		map->floor = ft_strdup(map->ln + 1);
-		map->ln++;
-		map->floor_colour = comma_colour(&map->ln, 0, 0);
+		map->floor = ft_strdup(map->maps[*i] + 1);
+		if (!map->floor)
+			return (1);
+		(*j)++;
+		map->floor_colour = comma_colour(&map->maps[*i][*j], 0, 0);
 	}
 	if (map->ceil_colour == 1 || map->floor_colour == 1)
 		return (1);

@@ -34,8 +34,9 @@ typedef struct s_map
 	char	*floor;
 	int		ceil_colour;
 	int		floor_colour;
+	int		size_list;
 	int		fd;
-	char 	**map;
+	char 	**maps;
 } 			t_map;
 
 typedef struct s_img
@@ -74,11 +75,12 @@ void 	init_map(t_map *map);
 int 	ft_main_act(t_data *data);
 
 //map_check_colour.c
-int		check_colour(t_map *map);
+int		check_colour(t_map *map, int *i, int *j);
 
 // map_check_info.c
 int		start_check_xpm(char *line);
-int		check_inforhead(t_map *map);
+int		check_inforhead(t_map *map, int i, int j);
+int		check_four_paths(t_map *map);
 
 //map_check_path.c
 int		check_path_south(t_map *map);
@@ -98,6 +100,7 @@ int		handle_keypress(int keysym, t_data *data);
 
 //utils.c
 int		ft_strcmp(char *s1, char *s2);
+int		ft_atoi_from_malloc(char *str);
 
 /* window.c */
 int 	ft_open_window(t_data *data);

@@ -11,6 +11,7 @@ void init_map(t_map *map)
     map->floor = NULL;
     map->ceil_colour = 0;
     map->floor_colour = 0;
+    map->size_list = 0;
     map->fd = 0;
-    map->map = NULL;
+    map->maps = NULL;
 }

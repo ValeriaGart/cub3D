@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+         #
+#    By: ynguyen <ynguyen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 21:17:54 by ynguyen           #+#    #+#              #
-#    Updated: 2024/02/05 16:43:54 by vharkush         ###   ########.fr        #
+#    Updated: 2024/02/11 16:48:00 by ynguyen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,16 +47,16 @@ SOURCES	=		ft_isalpha.c				\
 			ft_putendl_fd.c					\
 			ft_putnbr_fd.c					\
 			ft_split.c						\
-			get_next_line.c					\
-			get_next_line_utils.c
+			get_next_line_bonus.c			\
+			get_next_line_utils_bonus.c
 
-BONUS	=	ft_lstnew.c	\
-			ft_lstadd_front.c	\
-			ft_lstsize.c	\
-			ft_lstlast.c	\
-			ft_lstadd_back.c	\
-			ft_lstdelone.c	\
-			ft_lstclear.c	\
+BONUS	=	ft_lstnew.c						\
+			ft_lstadd_front.c				\
+			ft_lstsize.c					\
+			ft_lstlast.c					\
+			ft_lstadd_back.c				\
+			ft_lstdelone.c					\
+			ft_lstclear.c					\
 			ft_lstiter.c
 #			ft_lstmap.c	
 
