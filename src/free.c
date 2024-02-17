@@ -5,6 +5,8 @@ void	*ft_map_free(t_map *map)
 	int i;
 
 	i = -1;
+	if (!map)
+		return (NULL);
 	if (map->NO)
 		free(map->NO);
 	if (map->SO)

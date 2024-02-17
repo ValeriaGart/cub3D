@@ -1,10 +1,10 @@
 #include "../incl/cub3d.h"
 
-int	ft_new_img(t_data *data, t_img *img)
+int	ft_new_img(t_data *data, t_img *img, int x, int y)
 {
-	img->img = mlx_new_image(data->mlx_ptr, WIDTH_X, HEIGHT_Y);
+	img->img = mlx_new_image(data->mlx_ptr, x, y);
 	if (!img->img)
-		return (1);
+		return (ft_putstr_fd("Error\nMlx image creation failed\n", 2), 1);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 										&img->line_size, &img->endian);
 	return (0);
@@ -21,12 +21,6 @@ int ft_open_window(t_data *data)
 	{
 		mlx_destroy_display(data->mlx_ptr);
 		return (ft_putstr_fd("Error\nMlx window creating failed", 2), 1);
-	}
-	if (ft_new_img(data, &data->img))
-	{
-		mlx_destroy_display(data->mlx_ptr);
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		return (ft_putstr_fd("Error\nMlx image creation failed\n", 2), 1);
 	}
 	return (0);
 }

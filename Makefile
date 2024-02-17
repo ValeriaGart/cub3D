@@ -12,6 +12,7 @@ SRCS =	src/data.c			\
 		src/main.c			\
 		src/map_check.c		\
 		src/map_store.c		\
+		src/move_rerender.c	\
 		src/signal.c		\
 		src/utils.c			\
 		src/window.c
