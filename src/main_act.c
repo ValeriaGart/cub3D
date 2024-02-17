@@ -24,9 +24,9 @@ int ft_is_not_empty(int cur_pix, t_data *data)
     x = (int)(xPos / gridCellWidth);
     y = (int)(yPos / gridCellHeight);
 
-    if (ft_strchr("NWSE", data->map->map[y][x]))
+    if (ft_strchr("NWSE", data->map->maps[y][x]))
         return (0xFF5733);
-    if (data->map->map[y][x] != '0') {
+    if (data->map->maps[y][x] != '0') {
         return (0x000000);
     }
     return (0xFFFFFF);

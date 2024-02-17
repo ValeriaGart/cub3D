@@ -38,20 +38,3 @@ char	*ft_stringjoin(char *s1, char *s2)
 	free(s1);
 	return (temp);
 }
-
-char	*ft_strchr(const char *s, int c)
-{
-	if (!s)
-		return (0);
-	if (c >= 128)
-		c %= 128;
-	while (*s != '\0')
-	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == c)
-		return ((char *)s);
-	return (0);
-}

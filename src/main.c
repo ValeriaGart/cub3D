@@ -8,14 +8,14 @@ void	ft_storre_map(char *str, t_data *data)
 
 	i = 0;
 	fd = open(str, O_RDONLY);
-	new = get_next_line(fd, 0);
+	new = get_next_line(fd);
 	data->map = malloc(sizeof(t_map));
-	data->map->map = ft_calloc(sizeof(char *), 11);
+	data->map->maps = ft_calloc(sizeof(char *), 11);
 	while (new)
 	{
 		printf("%s", new);
-		data->map->map[i] = new;
-		new = get_next_line(fd, 0);
+		data->map->maps[i] = new;
+		new = get_next_line(fd);
 		i++;
 	}
 	printf("\n");
