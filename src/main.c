@@ -30,9 +30,11 @@ int main(int ac, char **av)
 	(void)av;
 	(void)ac;
 	ft_set_data(&data);
-	//if (ft_map_check(ac, av, &data))
-	//	return (1);
-	ft_storre_map(av[1], &data);
+  if (ft_map_check(ac, av, &data))
+	{
+		ft_map_free(data.map);
+		return (1);
+	}
 	ft_set_plr(data.map, &data);
 	printf("The game is running! 🤩\n");
 	if (ft_open_window(&data))

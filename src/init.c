@@ -1,15 +1,17 @@
 #include "../incl/cub3d.h"
 
-int init_map(t_map *map)
+void init_map(t_map *map)
 {
-    map->NO = NULL;
-    map->SO = NULL;
-    map->EA = NULL;
-    map->WE = NULL;
-    map->up_colour = NULL;
-    map->down_colour = NULL;
+    map->ln = NULL;
+    map->sou = NULL;
+    map->nor = NULL;
+    map->eas = NULL;
+    map->wes = NULL;
+    map->ceil = NULL;
+    map->floor = NULL;
     map->ceil_colour = 0;
     map->floor_colour = 0;
-    map->map = NULL;
-    return (0);
+    map->size_list = 0;
+    map->fd = 0;
+    map->maps = NULL;
 }

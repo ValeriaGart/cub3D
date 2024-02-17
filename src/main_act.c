@@ -1,15 +1,5 @@
 #include "../incl/cub3d.h"
 
-//TODO: Yen, store the numbers for me please
-/*int rgb_to_int(double r, double g, double b)
-{
-    int color = 0;
-    color |= (int)(b * 255);
-    color |= (int)(g * 255) << 8;
-    color |= (int)(r * 255) << 16;
-    return (color);
-}*/
-
 void    ft_put_img_on_window(t_data *data, t_img *img, int x, int y)
 {
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img->img, x, y);

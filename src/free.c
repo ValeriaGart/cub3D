@@ -1,32 +1,32 @@
 #include "../incl/cub3d.h"
 
+void save_free(void **ptr)
+{
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
+}
+
 void	*ft_map_free(t_map *map)
 {
 	int i;
 
 	i = -1;
-	if (!map)
-		return (NULL);
-	if (map->NO)
-		free(map->NO);
-	if (map->SO)
-		free(map->SO);
-	if (map->WE)
-		free(map->WE);
-	if (map->EA)
-		free(map->EA);
-	if (map->up_colour)
-		free(map->up_colour);
-	if (map->down_colour)
-		free(map->down_colour);
-	if (map->map)
+	save_free((void **)&map->nor);
+	save_free((void **)&map->sou);
+	save_free((void **)&map->wes);
+	save_free((void **)&map->eas);
+	save_free((void **)&map->ceil);
+	save_free((void **)&map->floor);
+	if (map->maps)
 	{
-		while (map->map[++i])
-				free(map->map[i]);
-		free(map->map);
+		while (++i < map->size_list && map->maps[i])
+			save_free((void **)&map->maps[i]);
+		save_free((void **)&map->maps);
 	}
-	if (map)
-		free(map);
+	save_free((void **)&map);
 	return (NULL);
 }
 

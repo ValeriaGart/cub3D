@@ -15,3 +15,12 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	return ((s1[i]) - s2[i]);
 }
+
+int ft_atoi_from_malloc(char *str)
+{
+	int result;
+
+	result = ft_atoi(str);
+	free(str);
+	return (result);
+}
