@@ -32,7 +32,6 @@ typedef struct s_list
 
 size_t				ft_strlen(const char *s);
 char				*ft_stringjoin(char *s1, char *s2);
-char				*ft_strchr(const char *s, int c);
 char				*get_next_line(int fd);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
 long				ft_atol(char *str);
