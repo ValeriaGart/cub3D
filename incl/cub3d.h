@@ -43,6 +43,7 @@ typedef struct s_map
 	int		size_list;
 	int		fd;
 	char 	**maps;
+	char	**real_map;
 } 			t_map;
 
 typedef struct s_img
@@ -102,6 +103,7 @@ int		check_colour(t_map *map, int *i, int *j);
 // map_check_info.c
 int		start_check_xpm(char *line);
 int		check_inforhead(t_map *map, int i, int j);
+int		check_real_map(t_map *map);
 int		check_four_paths(t_map *map);
 
 //map_check_path.c
@@ -109,6 +111,11 @@ int		check_path_south(t_map *map);
 int		check_path_north(t_map *map);
 int		check_path_west(t_map *map);
 int		check_path_east(t_map *map);
+
+// map_check_utils.c
+t_list	*create_line_list(t_map *map);
+int 	ft_isascii_no_space(int c);
+char    **get_real_map(t_map *map);
 
 // map_check.c
 int		ft_map_check(int ac, char **av, t_data *data);
