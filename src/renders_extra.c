@@ -50,3 +50,9 @@ void	ft_put_pixel_raycast(t_data *data, int colour, int z)
 
 void	ft_drawtheline(int x, int y, t_data *data, int colour)
 {
+	while (x < y)
+	{
+		ft_put_pixel_raycast(data, colour, x);
+		x += WIDTH_X;
+	}
+}
