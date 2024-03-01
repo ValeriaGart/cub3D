@@ -29,36 +29,8 @@ int	start_check_xpm(char *line)
 	return (0);
 }
 
-int	check_real_map(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map->maps[++i])
-	{
-		if (map->maps[i][0] == '\n')
-			continue ;
-		j = -1;
-		while (map->maps[i][++j])
-		{
-			if (ft_isspace(map->maps[i][j]))
-				continue ;
-			else if ((map->maps[i][j] != '0' || map->maps[i][j] != '1')
-				|| (map->maps[i][j] != 'N' || map->maps[i][j] != 'S'
-				|| map->maps[i][j] != 'W' || map->maps[i][j] != 'E'))
-			{
-				ft_putstr_fd("Error\nMap character is not valid\n", 2);
-				return (1);
-			}
-		}
-	}
-	return (0);
-}
-
 void	check_direction_name(t_map *map, int *i, int *j)
 {
-	// printf("map->maps[%d][%d] = %c\n", *i, *j, map->maps[*i][*j]);
 	if (map->sou == NULL && (map->maps[*i][*j] == 'S'
 		&& map->maps[*i][(*j) + 1] == 'O'))
 		map->sou = ft_strdup(map->maps[*i] + 2);
@@ -82,7 +54,8 @@ int	check_inforhead(t_map *map, int i, int j)
 			i++;
 			continue ;
 		}
-		while (ft_isspace(map->maps[i][j]))
+		j = 0;
+		while (map->maps[i][j] && ft_isspace(map->maps[i][j]))
 			j++;
 		if (check_colour(map, &i, &j))
 			return (1);

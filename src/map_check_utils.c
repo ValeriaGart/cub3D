@@ -31,53 +31,27 @@ int	ft_isascii_no_space(int c)
 		return (1);
 }
 
-char	**store_real_map(t_map *map, int *i)
+int	when_is_wrong(t_map *map, int i, int j)
 {
-	int	j;
-
-	j = -1;
-	while (*i < map->size_list)
+	if (!ft_strchr("01NSWE", map->real_map[i][j + 1]) || !ft_strchr("01NSWE",
+			map->real_map[i][j - 1]) || !ft_strchr("01NSWE", map->real_map[i
+			+ 1][j]) || !ft_strchr("01NSWE", map->real_map[i - 1][j]))
 	{
-		map->real_map[++j] = ft_strdup(map->maps[*i]);
-		if (!map->real_map[j])
-		{
-			j--;
-			while (j >= 0)
-			{
-				free(map->real_map[j]);
-				j--;
-			}
-			free(map->real_map);
-			map->real_map = NULL;
-			ft_putstr_fd("Error\nReal map cant be created\n", 2);
-			return (NULL);
-		}
-		if ((int)ft_strlen(map->real_map[j]) > map->x_map)
-			map->x_map = (int)ft_strlen(map->real_map[j]);
-		(*i)++;
+		ft_putstr_fd("Error\nMap is not closed, realated to general chars\n",
+			2);
+		return (1);
 	}
-	return (map->real_map);
-}
-
-char	**get_real_map(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map->maps[++i])
+	else if (map->real_map[i][j + 1] == '\0' || map->real_map[i][j - 1] == '\0'
+		|| map->real_map[i + 1][j] == '\0' || map->real_map[i - 1][j] == '\0')
 	{
-		j = 0;
-		while (map->maps[i][j] && ft_isspace(map->maps[i][j]))
-			j++;
-		if (map->maps[i][j] == '1')
-		{
-			map->y_map = map->size_list - i;
-			map->real_map = ft_calloc(sizeof(char *), (map->y_map + 1));
-			if (!map->real_map)
-				return (NULL);
-			map->real_map = store_real_map(map, &i);
-		}
+		ft_putstr_fd("Error\nMap is not closed, related to NULL\n", 2);
+		return (1);
 	}
-	return (map->real_map);
+	else if (map->real_map[i][j + 1] == '\n' || map->real_map[i][j - 1] == '\n'
+		|| map->real_map[i + 1][j] == '\n' || map->real_map[i - 1][j] == '\n')
+	{
+		ft_putstr_fd("Error\nMap is not closed, related to newline\n", 2);
+		return (1);
+	}
+	return (0);
 }
