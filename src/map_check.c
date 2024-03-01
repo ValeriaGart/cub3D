@@ -27,7 +27,6 @@ int	check_map_name(char **av)
 		ft_putstr_fd("Error\nMap file is not a \".cub\" file\n", 2);
 		return (1);
 	}
-	//TODO: valeria delete next 2 lines
 	while (av[1][i] && av[1][i] == '.')
 		i++;
 	while (av[1][i] && av[1][i] != '.')
@@ -43,6 +42,18 @@ int	check_map_name(char **av)
 		return (1);
 	}
 	return (0);
+}
+
+int	check_real_map(t_map *map)
+{
+	if (first_last_line(map) || check_map_char(map))
+		return (1);
+	else if (check_double_char(map, -1, 0))
+		return (1);
+	else if (check_zero(map) || check_player(map))
+		return (1);
+	else
+		return (0);
 }
 
 int	ft_map_check(int ac, char **av, t_data *data)

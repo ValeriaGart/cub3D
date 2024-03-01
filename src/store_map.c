@@ -81,7 +81,7 @@ char	**get_real_map(t_map *map)
 		j = 0;
 		while (map->maps[i][j] && ft_isspace(map->maps[i][j]))
 			j++;
-		if (map->maps[i][j] == '1')
+		if (map->maps[i][j] == '1' || map->maps[i][j] == '0')
 		{
 			map->y_map = map->size_list - i;
 			map->real_map = ft_calloc(sizeof(char *), (map->y_map + 1));

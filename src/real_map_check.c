@@ -78,7 +78,6 @@ int	check_map_char(t_map *map)
 	return (0);
 }
 
-//TODO: 0 issue with the line before last line - Yen will fix this
 int	check_zero(t_map *map)
 {
 	int	i;
@@ -112,8 +111,10 @@ int	check_player(t_map *map)
 {
 	int	i;
 	int	j;
+	int	count;
 
 	i = -1;
+	count = 0;
 	while (map->real_map[++i])
 	{
 		j = -1;
@@ -121,22 +122,16 @@ int	check_player(t_map *map)
 		{
 			if (ft_strchr("NSWE", map->real_map[i][j]))
 			{
+				count++;
 				if (when_is_wrong(map, i, j))
 					return (1);
 			}
 		}
 	}
+	if (count != 1)
+	{
+		ft_putstr_fd("Error\nMap doesnt contain right player\n", 2);
+		return (1);
+	}
 	return (0);
-}
-
-int	check_real_map(t_map *map)
-{
-	if (first_last_line(map) || check_map_char(map))
-		return (1);
-	else if (check_double_char(map, -1, 0))
-		return (1);
-	else if (check_zero(map) || check_player(map))
-		return (1);
-	else
-		return (0);
 }
