@@ -23,14 +23,14 @@ void	ft_storre_map(char *str, t_data *data)
 	data->map->y_map = 10;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_data data;
+	t_data	data;
 
 	(void)av;
 	(void)ac;
 	ft_set_data(&data);
-  if (ft_map_check(ac, av, &data))
+	if (ft_map_check(ac, av, &data))
 	{
 		ft_map_free(data.map);
 		return (1);

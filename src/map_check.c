@@ -42,35 +42,6 @@ int	check_map_name(char **av)
 	return (0);
 }
 
-int	check_map_empty(t_map *map, int i)
-{
-	t_list	*lines_list;
-	t_list	*tmp;
-
-	lines_list = create_line_list(map);
-	tmp = lines_list;
-	map->size_list = ft_lstsize(lines_list);
-	map->maps = ft_calloc((map->size_list + 1), sizeof(char *));
-	if (!map->maps)
-		return (ft_lstclear(&lines_list, free), 1);
-	while (lines_list)
-	{
-		map->maps[i] = ft_strdup(lines_list->content);
-		if (map->maps[i][ft_strlen(map->maps[i]) - 1] == '\n')
-			map->maps[i][ft_strlen(map->maps[i]) - 1] = '\0';
-		if (!map->maps[i])
-		{
-			ft_lstclear(&tmp, free);
-			ft_putstr_fd("Error\nMalloc in map->maps failed\n", 2);
-			return (1);
-		}
-		lines_list = lines_list->next;
-		i++;
-	}
-	ft_lstclear(&tmp, free);
-	return (0);
-}
-
 int	ft_map_check(int ac, char **av, t_data *data)
 {
 	if (check_ac(ac, data) || check_map_name(av))
@@ -92,7 +63,7 @@ int	ft_map_check(int ac, char **av, t_data *data)
 		return (1);
 	else if (check_four_paths(data->map))
 		return (1);
-	if (get_real_map(data->map) == NULL)
+	else if (get_real_map(data->map) == NULL || check_real_map(data->map))
 		return (1);
 	return (0);
 }

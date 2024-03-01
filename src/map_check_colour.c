@@ -1,5 +1,22 @@
 #include "../incl/cub3d.h"
 
+int	more_than_3digits(char *line, int *i, int *arg)
+{
+	while (line[*i] && line[*i] != '\n' && *arg == 3)
+	{
+		if (line[*i] == ',')
+			return (1);
+		else if (ft_isascii_no_space(line[*i]))
+		{
+			ft_putstr_fd("Error\nMore than 3 didgits \n", 2);
+			return (1);
+		}
+		else
+			(*i)++;
+	}
+	return (0);
+}
+
 char	*set_colour(char *line, int *i, int *arg, int *comma)
 {
 	char	*which_colour;
@@ -20,17 +37,10 @@ char	*set_colour(char *line, int *i, int *arg, int *comma)
 	(*arg)++;
 	if (line[*i] == ',')
 		(*comma)++;
-	while (line[*i] && line[*i] != '\n' && *arg == 3)
+	if (more_than_3digits(line, i, arg))
 	{
-		if (line[*i] == ',')
-			return (NULL);
-		else if (ft_isascii_no_space(line[*i]))
-		{
-			ft_putstr_fd("Error\nToo many digits \n", 2);
-			return (NULL);
-		}
-		else
-			(*i)++;
+		free(which_colour);
+		return (NULL);
 	}
 	return (which_colour);
 }

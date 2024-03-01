@@ -1,6 +1,5 @@
 #include "../incl/cub3d.h"
 
-//check path after the directions
 int	check_path_south(t_map *map)
 {
 	char	*line;
@@ -19,7 +18,6 @@ int	check_path_south(t_map *map)
 		line[++k] = map->sou[i];
 		i++;
 	}
-	free(map->sou);
 	if (start_check_xpm(line))
 		return (1);
 	map->sou = line;
@@ -44,7 +42,6 @@ int	check_path_north(t_map *map)
 		line[++k] = map->nor[i];
 		i++;
 	}
-	free(map->nor);
 	if (start_check_xpm(line))
 		return (1);
 	map->nor = line;
@@ -69,7 +66,6 @@ int	check_path_west(t_map *map)
 		line[++k] = map->wes[i];
 		i++;
 	}
-	free(map->wes);
 	if (start_check_xpm(line))
 		return (1);
 	map->wes = line;
@@ -94,7 +90,6 @@ int	check_path_east(t_map *map)
 		line[++k] = map->eas[i];
 		i++;
 	}
-	free(map->eas);
 	if (start_check_xpm(line))
 		return (1);
 	map->eas = line;
