@@ -30,7 +30,9 @@ void    ft_set_plr(t_map *map, t_data *data)
         }
         y++;
     }
-    
+	data->plr.angle = 0;
+    data->plr.delta_x = cos(data->plr.angle) * 5;
+	data->plr.delta_y = sin(data->plr.angle) * 5;
 }
 
 void ft_set_data(t_data *data)
@@ -39,4 +41,6 @@ void ft_set_data(t_data *data)
     data->mlx_ptr = NULL;
     data->win_ptr = NULL;
     data->smallw_enabled = true;
+	data->raycast.posX = 0;
+	data->raycast.posY = 0;
 }

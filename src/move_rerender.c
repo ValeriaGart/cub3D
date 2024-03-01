@@ -29,39 +29,42 @@ void    ft_move_plr_map(t_map **map, int new_pos_x, int new_pos_y, t_data **data
     }
 }
 
-void    ft_direction_button(char direction, t_data *data)
+void    ft_direction_button(char direction, t_data *data, t_rc *raycast)
 {
-    int new_pos_x;
-    int new_pos_y;
+    float new_pos_x;
+    float new_pos_y;
+	//double moveSpeed = 30 * 5.0;
 
     new_pos_x = 0;
     new_pos_y = 0;
     if (direction == 'l')
     {
-        new_pos_x = -1;
-        //data->plr.angle -= 0.1;
-        //if (data->plr.angle < 0)
-        //    data->plr.angle += 2 * PI;
-        //data->plr.delta_x = cos(data->plr.angle) * 5;
-        //data->plr.delta_y = sin(data->plr.angle) * 5;
+		double oldDirX = raycast->dirX;
+    	raycast->dirX = raycast->dirX * cos(0.3) - raycast->dirY * sin(0.3);
+    	raycast->dirY = oldDirX * sin(0.3) + raycast->dirY * cos(0.3);
+    	double oldPlaneX = raycast->planeX;
+    	raycast->planeX = raycast->planeX * cos(0.3) - raycast->planeY * sin(0.3);
+    	raycast->planeY = oldPlaneX * sin(0.3) + raycast->planeY * cos(0.3);
     }
     if (direction == 'r')
     {
-        new_pos_x = 1;
-        //data->plr.angle += 0.1;
-        //if (data->plr.angle > PI * 2)
-        //    data->plr.angle -= 2 * PI;
-        //data->plr.delta_x = cos(data->plr.angle) * 5;
-        //data->plr.delta_y = sin(data->plr.angle) * 5;
+		double oldDirX = raycast->dirX;
+    	raycast->dirX = raycast->dirX * cos(-0.3) - raycast->dirY * sin(-0.3);
+    	raycast->dirY = oldDirX * sin(-0.3) + raycast->dirY * cos(-0.3);
+    	double oldPlaneX = raycast->planeX;
+    	raycast->planeX = raycast->planeX * cos(-0.3) - raycast->planeY * sin(-0.3);
+    	raycast->planeY = oldPlaneX * sin(-0.3) + raycast->planeY * cos(-0.3);
     }
     if (direction == 'u')
     {
-        new_pos_y = -1;
-        //new_pos_y -= data->plr.delta_x;
-        //new_pos_y -= data
-    }
+		raycast->posX += raycast->dirX * 0.3;
+		raycast->posY += raycast->dirY * 0.3;
+	}
     if (direction == 'd')
-        new_pos_y = 1;
+	{
+		raycast->posX -= raycast->dirX * 0.3;
+		raycast->posY -= raycast->dirY * 0.3;
+	}
     ft_move_plr_map(&(data->map), new_pos_x, new_pos_y, &data);
     if (data->smallw_enabled == true)
         ft_small_w(&data);

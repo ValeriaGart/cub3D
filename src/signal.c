@@ -20,12 +20,12 @@ int	handle_keypress(int keysym, t_data *data)
 		ft_main_act(data);
 	}
 	if (keysym == XK_s || keysym == XK_Down)
-		ft_direction_button('d', data);
+		ft_direction_button('d', data, &(data->raycast));
 	if (keysym == XK_w || keysym == XK_Up)
-		ft_direction_button('u', data);
+		ft_direction_button('u', data, &(data->raycast));
 	if (keysym == XK_a || keysym == XK_Left)
-		ft_direction_button('l', data);
+		ft_direction_button('l', data, &(data->raycast));
 	if (keysym == XK_d || keysym == XK_Right)
-		ft_direction_button('r', data);
+		ft_direction_button('r', data, &(data->raycast));
 	return (0);
 }
