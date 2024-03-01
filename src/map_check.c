@@ -27,6 +27,9 @@ int	check_map_name(char **av)
 		ft_putstr_fd("Error\nMap file is not a \".cub\" file\n", 2);
 		return (1);
 	}
+	//TODO: valeria delete next 2 lines
+	while (av[1][i] && av[1][i] == '.')
+		i++;
 	while (av[1][i] && av[1][i] != '.')
 		i++;
 	if (!av[1][i] || !ft_strnstr(av[1] + i, ".cub", 4))

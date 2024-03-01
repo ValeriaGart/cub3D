@@ -16,16 +16,19 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# define DOWN_KEY 65364
-# define UP_KEY 65362
-# define LEFT_KEY 65361
-# define RIGHT_KEY 65363
+#define DOWN_KEY 65364
+#define UP_KEY 65362
+#define LEFT_KEY 65361
+#define RIGHT_KEY 65363
 
-# define PI 3.1415926535
-# define WIDTH_X 640
-# define HEIGHT_Y 480
-# define WIDTH_SMALL 160
-# define HEIGHT_SMALL 120
+#define PI 3.1415926535
+#define P2 PI/2
+#define P3 3 * PI/2
+#define DR 0.0174533
+#define	WIDTH_X 640
+#define	HEIGHT_Y 480
+#define	WIDTH_SMALL 160
+#define	HEIGHT_SMALL 120
 
 typedef struct s_map
 {
@@ -65,6 +68,30 @@ typedef struct s_plr
 	char	direction;
 }			t_plr;
 
+typedef struct s_rc
+{
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		side;
+	int		hit;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+} 			t_rc;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -74,6 +101,7 @@ typedef struct s_data
 	t_img	img;
 	t_img	small_w;
 	t_map	*map;
+	t_rc	raycast;
 	t_plr	plr;
 }			t_data;
 
@@ -89,8 +117,11 @@ void		*ft_map_free(t_map *map);
 int			ft_free_window(t_data *data);
 int			ft_free_all(t_data *data);
 
-// init.c
-void		init_map(t_map *map);
+//init.c
+void	ft_init_raycast_loop(t_data *data, int x);
+void	ft_init_raycast(t_data *data);
+void 	init_map(t_map *map);
+
 
 /* main_act.c */
 int			ft_main_act(t_data *data);
@@ -120,7 +151,14 @@ int			when_is_wrong(t_map *map, int i, int j);
 int			ft_map_check(int ac, char **av, t_data *data);
 
 /* move_rerender.c */
-void		ft_direction_button(char direction, t_data *data);
+void    ft_direction_button(char direction, t_data *data, t_rc *raycast);
+
+/* raycasting */
+int		ft_raycasting(t_data *data);
+
+/* renders_extra.c */
+void	ft_put_pixel_raycast(t_data *data, int x, int y, int colour, int z);
+void	ft_drawtheline(int x, int y, t_data *data, int colour);
 
 // real_map_check.c
 int			first_last_line(t_map *map);
