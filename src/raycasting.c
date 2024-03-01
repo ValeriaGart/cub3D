@@ -16,7 +16,7 @@ void	ft_hit_where(t_rc *raycast, t_data *data)
 			raycast->mapY += raycast->stepY;
 			raycast->side = 1;
 		}
-		if(data->map->maps[raycast->mapY][raycast->mapX] > '0')
+		if(data->map->real_map[raycast->mapY][raycast->mapX] > '0')
 			raycast->hit = 1;
 	}
 }
@@ -63,7 +63,7 @@ void	ft_calc_put_line(t_rc *raycast, t_data *data, int x)
 		drawEnd = HEIGHT_Y - 1;		
 	drawStart = x + (drawStart * WIDTH_X);
 	drawEnd = drawEnd * WIDTH_X + x;
-	if (data->map->maps[raycast->mapY][raycast->mapX] == '1')
+	if (data->map->real_map[raycast->mapY][raycast->mapX] == '1')
 		color = 0XFF0000;
 	else
 		color = 0XFF0000;

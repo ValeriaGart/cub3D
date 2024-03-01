@@ -157,7 +157,8 @@ void    ft_direction_button(char direction, t_data *data, t_rc *raycast);
 int		ft_raycasting(t_data *data);
 
 /* renders_extra.c */
-void	ft_put_pixel_raycast(t_data *data, int x, int y, int colour, int z);
+int		ft_square_map(char **map, t_map *maps, t_data *data);
+void	ft_put_pixel_raycast(t_data *data, int colour, int z);
 void	ft_drawtheline(int x, int y, t_data *data, int colour);
 
 // real_map_check.c

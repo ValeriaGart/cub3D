@@ -8,21 +8,21 @@ void    ft_set_plr(t_map *map, t_data *data)
     x = 0;
     y = 0;
     data->plr.angle = 0;
-    while (map->maps[y])
+    while (map->real_map[y])
     {
         x = 0;
-        while (map->maps[y][x])
+        while (map->real_map[y][x])
         {
-            if (ft_strchr("NWES", map->maps[y][x]))
+            if (ft_strchr("NWES", map->real_map[y][x]))
             {
                 data->plr.x = x;
                 data->plr.y = y;
-                data->plr.direction = map->maps[y][x];
-                if (map->maps[y][x] == 'N')
+                data->plr.direction = map->real_map[y][x];
+                if (map->real_map[y][x] == 'N')
                     data->plr.angle = PI / 2;
-                if (map->maps[y][x] == 'W')
+                if (map->real_map[y][x] == 'W')
                     data->plr.angle = PI;
-                if (map->maps[y][x] == 'S')
+                if (map->real_map[y][x] == 'S')
                     data->plr.angle = 3 * PI / 2;
                 return ;
             }
