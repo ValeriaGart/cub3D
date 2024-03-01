@@ -2,7 +2,7 @@
 
 int main(int ac, char **av)
 {
-	t_data data;
+	t_data	data;
 
 	ft_set_data(&data);
 	if (ft_map_check(ac, av, &data))

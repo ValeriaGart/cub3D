@@ -13,10 +13,13 @@ SRCS =	src/data.c				\
 		src/map_check_colour.c	\
 		src/map_check_path.c	\
 		src/map_check_info.c	\
+		src/map_check_utils.c	\
 		src/map_check.c			\
-    		src/move_rerender.c		\
+    src/move_rerender.c		\
 		src/raycasting.c		\
 		src/renders_extra.c		\
+		src/real_map_check.c	\
+		src/store_map.c			\
 		src/signal.c			\
 		src/utils.c				\
 		src/window.c

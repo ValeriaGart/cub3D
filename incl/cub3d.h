@@ -1,5 +1,5 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -45,9 +45,9 @@ typedef struct s_map
 	int		y_map;
 	int		size_list;
 	int		fd;
-	char	*map_ray;
-	char 	**maps;
-} 			t_map;
+	char	**maps;
+	char	**real_map;
+}			t_map;
 
 typedef struct s_img
 {
@@ -56,7 +56,7 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_size;
 	int		endian;
-} 			t_img;
+}			t_img;
 
 typedef struct s_plr
 {
@@ -66,7 +66,7 @@ typedef struct s_plr
 	float	delta_y;
 	float	angle;
 	char	direction;
-} 			t_plr;
+}			t_plr;
 
 typedef struct s_rc
 {
@@ -94,8 +94,8 @@ typedef struct s_rc
 
 typedef struct s_data
 {
-	void 	*mlx_ptr;
-	void 	*win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	int		line_num;
 	bool	smallw_enabled;
 	t_img	img;
@@ -106,43 +106,49 @@ typedef struct s_data
 }			t_data;
 
 /* data.c */
-void    ft_set_plr(t_map *map, t_data *data);
-void 	ft_set_data(t_data *data);
+void		ft_set_plr(t_map *map, t_data *data);
+void		ft_set_data(t_data *data);
 
 /* error.c */
-void	*ft_error_msg(char *err);
+void		*ft_error_msg(char *err);
 
 /* free.c */
-void	*ft_map_free(t_map *map);
-int 	ft_free_window(t_data *data);
-int		ft_free_all(t_data *data);
+void		*ft_map_free(t_map *map);
+int			ft_free_window(t_data *data);
+int			ft_free_all(t_data *data);
 
 //init.c
 void	ft_init_raycast_loop(t_data *data, int x);
 void	ft_init_raycast(t_data *data);
 void 	init_map(t_map *map);
 
-/* main_act.c */
-int 	ft_main_act(t_data *data);
-int		ft_main_loop(t_data *data);
-void    ft_small_w(t_data **data);
 
-//map_check_colour.c
-int		check_colour(t_map *map, int *i, int *j);
+/* main_act.c */
+int			ft_main_act(t_data *data);
+int			ft_main_loop(t_data *data);
+void		ft_small_w(t_data **data);
+
+// map_check_colour.c
+int			check_colour(t_map *map, int *i, int *j);
 
 // map_check_info.c
-int		start_check_xpm(char *line);
-int		check_inforhead(t_map *map, int i, int j);
-int		check_four_paths(t_map *map);
+int			start_check_xpm(char *line);
+int			check_inforhead(t_map *map, int i, int j);
+int			check_four_paths(t_map *map);
 
-//map_check_path.c
-int		check_path_south(t_map *map);
-int		check_path_north(t_map *map);
-int		check_path_west(t_map *map);
-int		check_path_east(t_map *map);
+// map_check_path.c
+int			check_path_south(t_map *map);
+int			check_path_north(t_map *map);
+int			check_path_west(t_map *map);
+int			check_path_east(t_map *map);
+
+// map_check_utils.c
+t_list		*create_line_list(t_map *map);
+int			ft_isascii_no_space(int c);
+int			when_is_wrong(t_map *map, int i, int j);
 
 // map_check.c
-int		ft_map_check(int ac, char **av, t_data *data);
+int			ft_map_check(int ac, char **av, t_data *data);
 
 /* move_rerender.c */
 void    ft_direction_button(char direction, t_data *data, t_rc *raycast);
@@ -154,16 +160,24 @@ int		ft_raycasting(t_data *data);
 void	ft_put_pixel_raycast(t_data *data, int x, int y, int colour, int z);
 void	ft_drawtheline(int x, int y, t_data *data, int colour);
 
-/* signal.c */
-int 	handle_x(t_data *data);
-int		handle_keypress(int keysym, t_data *data);
+// real_map_check.c
+int			first_last_line(t_map *map);
+int			check_real_map(t_map *map);
 
-//utils.c
-int		ft_strcmp(char *s1, char *s2);
-int		ft_atoi_from_malloc(char *str);
+/* signal.c */
+int			handle_x(t_data *data);
+int			handle_keypress(int keysym, t_data *data);
+
+// store_map.c
+int			check_map_empty(t_map *map, int i);
+char		**get_real_map(t_map *map);
+
+// utils.c
+int			ft_strcmp(char *s1, char *s2);
+int			ft_atoi_from_malloc(char *str);
 
 /* window.c */
-int		ft_new_img(t_data *data, t_img *img, int x, int y);
-int 	ft_open_window(t_data *data);
+int			ft_new_img(t_data *data, t_img *img, int x, int y);
+int			ft_open_window(t_data *data);
 
 #endif
