@@ -10,18 +10,15 @@ void	ft_init_raycast_loop(t_data *data, int x)
 	data->raycast.mapX = (int)data->raycast.posX;
 	data->raycast.mapY = (int)data->raycast.posY;
 	if (data->raycast.rayDirX == 0)
-		data->raycast.deltaDistX = 1e30;
+		data->raycast.deltaDistX = __DBL_MAX__;
 	else
-		data->raycast.deltaDistX = sqrt(1 + (data->raycast.rayDirY
-					* data->raycast.rayDirY) / (data->raycast.rayDirX
-					* data->raycast.rayDirX));
+		data->raycast.deltaDistX = fabs(1.0 / data->raycast.rayDirX);
 	if (data->raycast.rayDirY == 0)
-		data->raycast.deltaDistY = 1e30;
+		data->raycast.deltaDistY = __DBL_MAX__;
 	else
-		data->raycast.deltaDistY = sqrt(1 + (data->raycast.rayDirX
-					* data->raycast.rayDirX) / (data->raycast.rayDirY
-					* data->raycast.rayDirY));
+		data->raycast.deltaDistY = fabs(1.0 / data->raycast.rayDirY);
 	data->raycast.hit = 0;
+	data->raycast.perpWallDist = 0;
 }
 
 void	ft_init_raycast(t_data *data)

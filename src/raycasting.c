@@ -1,24 +1,41 @@
 #include "../incl/cub3d.h"
 
+void	ft_check_side_hit(t_rc *raycast)
+{
+	if(raycast->sideDistX < raycast->sideDistY)
+	{
+		raycast->sideDistX += raycast->deltaDistX;
+		raycast->mapX += raycast->stepX;
+		raycast->side = 0;
+	}
+	else
+	{
+		raycast->sideDistY += raycast->deltaDistY;
+		raycast->mapY += raycast->stepY;
+		raycast->side = 1;
+	}
+}
+
 void	ft_hit_where(t_rc *raycast, t_data *data)
 {
-	while (raycast->hit == 0)
+	while(raycast->hit == 0)
 	{
-		if (raycast->sideDistX < raycast->sideDistY)
+		ft_check_side_hit(raycast);
+		if ((raycast->mapX < 0 || raycast->mapX > data->map->x_map - 1)
+		|| (raycast->mapY < 0 || raycast->mapY > data->map->y_map - 1))
 		{
-			raycast->sideDistX += raycast->deltaDistX;
-			raycast->mapX += raycast->stepX;
-			raycast->side = 0;
-		}
-		else
-		{
-			raycast->sideDistY += raycast->deltaDistY;
-			raycast->mapY += raycast->stepY;
-			raycast->side = 1;
+			raycast->perpWallDist = __DBL_MAX__;
+			raycast->lineheight = (int)(HEIGHT_Y / raycast->perpWallDist);
+			return ;
 		}
 		if (data->map->real_map[raycast->mapY][raycast->mapX] > '0')
 			raycast->hit = 1;
 	}
+	if (!raycast->side)
+		raycast->perpWallDist = (raycast->sideDistX - raycast->deltaDistX);
+	else
+		raycast->perpWallDist = (raycast->sideDistY - raycast->deltaDistY);
+	raycast->lineheight = (int)(HEIGHT_Y / raycast->perpWallDist);
 }
 
 void	ft_step_calc(t_rc *raycast)
@@ -51,31 +68,27 @@ void	ft_step_calc(t_rc *raycast)
 
 void	ft_calc_put_line(t_rc *raycast, t_data *data, int x)
 {
-	int	lineHeight;
 	int	drawStart;
 	int	drawEnd;
-	int	color;
+	int color = 0;
 
-	lineHeight = (int)(HEIGHT_Y / raycast->perpWallDist);
-	if (raycast->perpWallDist == 0)
-		lineHeight = HEIGHT_Y;
-	drawStart = -lineHeight / 2 + HEIGHT_Y / 2;
-	if (drawStart < 0)
+	drawStart = -raycast->lineheight / 2 + HEIGHT_Y / 2;
+	if(drawStart < 0)
 		drawStart = 0;
-	drawEnd = lineHeight / 2 + HEIGHT_Y / 2;
-	if (drawEnd >= HEIGHT_Y)
-		drawEnd = HEIGHT_Y - 1;
+	drawEnd = raycast->lineheight / 2 + HEIGHT_Y / 2;
+	if(drawEnd >= HEIGHT_Y)
+		drawEnd = HEIGHT_Y - 1;		
 	drawStart = x + (drawStart * WIDTH_X);
 	drawEnd = drawEnd * WIDTH_X + x;
-	if (data->map->real_map[raycast->mapY][raycast->mapX] == '1')
-		color = 0XFF0000;
+	if (raycast->side == 1 && raycast->rayDirY < 0)
+		raycast->what_side = 0;
+	else if (!raycast->side && raycast->rayDirX > 0)
+		raycast->what_side = 1;
+	else if (raycast->side && raycast->rayDirY > 0)
+		raycast->what_side = 2;
 	else
-		color = 0XFF0000;
-	if (raycast->side == 1)
-	{
-		color = 0X8B0000;
-	}
-	ft_drawtheline(drawStart, drawEnd, data, color);
+		raycast->what_side = 3;
+	ft_draw_pic(drawStart, drawEnd, data ,color, x);
 }
 
 int	ft_raycasting(t_data *data)
@@ -90,10 +103,6 @@ int	ft_raycasting(t_data *data)
 		ft_init_raycast_loop(data, x);
 		ft_step_calc(&(data->raycast));
 		ft_hit_where(&(data->raycast), data);
-		if (raycast->side == 0)
-			raycast->perpWallDist = (raycast->sideDistX - raycast->deltaDistX);
-		else
-			raycast->perpWallDist = (raycast->sideDistY - raycast->deltaDistY);
 		ft_calc_put_line(&(data->raycast), data, x);
 		x++;
 	}

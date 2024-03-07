@@ -55,6 +55,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_size;
 	int		endian;
+	int		width;
+	int		height;
 }			t_img;
 
 typedef struct s_plr
@@ -75,6 +77,10 @@ typedef struct s_rc
 	int		stepY;
 	int		side;
 	int		hit;
+	int		lineheight;
+	int		what_side;
+	int		tex;
+	int		tex_y;
 	double	posX;
 	double	posY;
 	double	dirX;
@@ -99,6 +105,10 @@ typedef struct s_data
 	bool	smallw_enabled;
 	t_img	img;
 	t_img	small_w;
+	t_img	no;
+	t_img	so;
+	t_img	we;
+	t_img	ea;
 	t_map	*map;
 	t_rc	raycast;
 	t_plr	plr;
@@ -151,6 +161,7 @@ int			ft_raycasting(t_data *data);
 int			ft_square_map(char **map, t_map *maps, t_data *data);
 void		ft_put_pixel_raycast(t_data *data, int colour, int z);
 void		ft_drawtheline(int x, int y, t_data *data, int colour);
+void	ft_draw_pic(int x, int y, t_data *data, int colour, int real_x);
 
 // real_map_check.c
 int			first_last_line(t_map *map);
@@ -174,5 +185,6 @@ int			ft_atoi_from_malloc(char *str);
 /* window.c */
 int			ft_new_img(t_data *data, t_img *img, int x, int y);
 int			ft_open_window(t_data *data);
+int			ft_store_imgs(t_data *data);
 
 #endif
