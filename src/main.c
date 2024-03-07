@@ -1,17 +1,21 @@
 #include "../incl/cub3d.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
+	int		i;
 
 	ft_set_data(&data);
-	if (ft_map_check(ac, av, &data) || ft_square_map(data.map->real_map, data.map, &data))
+	if (ac != 2)
+		return (ft_error_msg("Wrong number of arguments\n"), 1);
+	if (ft_map_check(av, &data) || ft_square_map(data.map->real_map, data.map,
+			&data))
 	{
 		ft_map_free(data.map);
 		return (1);
 	}
-	int i = -1;
-	while( data.map->real_map[++i])
+	i = -1;
+	while (data.map->real_map[++i])
 		printf("%s\n", data.map->real_map[i]);
 	ft_set_plr(data.map, &data);
 	printf("The game is running! 🤩\n");
@@ -24,4 +28,3 @@ int main(int ac, char **av)
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
-

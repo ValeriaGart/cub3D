@@ -22,8 +22,8 @@
 # define RIGHT_KEY 65363
 
 # define PI 3.1415926535
-# define P2 PI / 2
-# define P3 3 * PI / 2
+# define P2 PI/2
+# define P3 3*PI/2
 # define DR 0.0174533
 # define WIDTH_X 640
 # define HEIGHT_Y 480
@@ -32,7 +32,6 @@
 
 typedef struct s_map
 {
-	char	*ln;
 	char	*nor;
 	char	*sou;
 	char	*eas;
@@ -113,6 +112,7 @@ void		ft_set_data(t_data *data);
 void		*ft_error_msg(char *err);
 
 /* free.c */
+void		save_free(void **ptr);
 void		*ft_map_free(t_map *map);
 int			ft_free_window(t_data *data);
 int			ft_free_all(t_data *data);
@@ -124,22 +124,13 @@ void		init_map(t_map *map);
 
 /* main_act.c */
 int			ft_main_act(t_data *data);
-int			ft_main_loop(t_data *data);
 void		ft_small_w(t_data **data);
 
 // map_check_colour.c
 int			check_colour(t_map *map, int *i, int *j);
 
 // map_check_info.c
-int			start_check_xpm(char *line);
 int			check_inforhead(t_map *map, int i, int j);
-int			check_four_paths(t_map *map);
-
-// map_check_path.c
-int			check_path_south(t_map *map);
-int			check_path_north(t_map *map);
-int			check_path_west(t_map *map);
-int			check_path_east(t_map *map);
 
 // map_check_utils.c
 t_list		*create_line_list(t_map *map);
@@ -148,7 +139,7 @@ int			when_is_wrong(t_map *map, int i, int j);
 
 // map_check.c
 int			check_real_map(t_map *map);
-int			ft_map_check(int ac, char **av, t_data *data);
+int			ft_map_check(char **av, t_data *data);
 
 /* move_rerender.c */
 void		ft_direction_button(char direction, t_data *data, t_rc *raycast);

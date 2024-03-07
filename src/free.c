@@ -1,6 +1,6 @@
 #include "../incl/cub3d.h"
 
-void save_free(void **ptr)
+void	save_free(void **ptr)
 {
 	if (*ptr)
 	{
@@ -11,7 +11,7 @@ void save_free(void **ptr)
 
 void	*ft_map_free(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	save_free((void **)&map->nor);
@@ -26,11 +26,18 @@ void	*ft_map_free(t_map *map)
 			save_free((void **)&map->maps[i]);
 		save_free((void **)&map->maps);
 	}
+	if (map->real_map)
+	{
+		i = -1;
+		while (map->real_map[++i])
+			save_free((void **)&map->real_map[i]);
+		save_free((void **)&map->real_map);
+	}
 	save_free((void **)&map);
 	return (NULL);
 }
 
-int ft_free_window(t_data *data)
+int	ft_free_window(t_data *data)
 {
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -44,7 +51,7 @@ int ft_free_window(t_data *data)
 	return (1);
 }
 
-int ft_free_all(t_data *data)
+int	ft_free_all(t_data *data)
 {
 	ft_map_free(data->map);
 	return (ft_free_window(data));
