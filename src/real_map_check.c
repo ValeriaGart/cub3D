@@ -15,8 +15,7 @@ int	first_last_line(t_map *map)
 			{
 				if (map->real_map[i][j] != '1' && map->real_map[i][j] != ' ')
 				{
-					ft_putstr_fd("Error\nMap is not closed for first and last line\n",
-						2);
+					ft_error_msg("Map is not closed for first or last line\n");
 					return (1);
 				}
 			}
