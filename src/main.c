@@ -1,6 +1,6 @@
 #include "../incl/cub3d.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
 
@@ -15,10 +15,9 @@ int main(int ac, char **av)
 	if (ft_open_window(&data) || ft_store_imgs(&data))
 		return (ft_map_free(data.map), 1);
 	ft_init_raycast(&data);
-	mlx_loop_hook(data.mlx_ptr, &ft_main_act, &data);
+	ft_main_act(&data);
 	mlx_hook(data.win_ptr, 17, 1L << 2, &handle_x, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
-

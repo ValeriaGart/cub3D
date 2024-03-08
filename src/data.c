@@ -2,8 +2,8 @@
 
 void	ft_player_found(t_data *data, t_map *map, int y, int x)
 {
-	data->plr.x = x;
-	data->plr.y = y;
+	data->plr.x = x + 0.5;
+	data->plr.y = y + 0.5;
 	data->plr.direction = map->real_map[y][x];
 	if (map->real_map[y][x] == 'N')
 		data->plr.angle = PI / 2;
@@ -11,6 +11,7 @@ void	ft_player_found(t_data *data, t_map *map, int y, int x)
 		data->plr.angle = PI;
 	if (map->real_map[y][x] == 'S')
 		data->plr.angle = 3 * PI / 2;
+	map->real_map[y][x] = '0';
 }
 
 void	ft_set_plr(t_map *map, t_data *data)

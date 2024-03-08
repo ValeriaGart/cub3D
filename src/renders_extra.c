@@ -65,7 +65,7 @@ double	get_step(t_rc *rc)
 		wall = rc->posY + rc->perpWallDist * rc->rayDirY;
 	else
 		wall = rc->posX + rc->perpWallDist * rc->rayDirX;
-	rc->tex = (int)((double)(wall - floor(wall)) * (double)64);
+	rc->tex = (int)((double)(wall - floor(wall))*(double)64);
 	if ((!rc->side && rc->rayDirX < 0)
 		|| (rc->side && rc->rayDirY > 0))
 		rc->tex = 64 - rc->tex - 1;
@@ -99,7 +99,8 @@ void	ft_draw_pic(int x, int y, t_data *data, int colour, int real_x)
 	double	tex_p;
 
 	step = get_step(&data->raycast);
-	tex_p = (((x - real_x) / WIDTH_X) - HEIGHT_Y / 2 + data->raycast.lineheight / 2) * step;
+	tex_p = (((x - real_x) / WIDTH_X) - HEIGHT_Y
+			/ 2 + data->raycast.lineheight / 2) * step;
 	while (x <= y)
 	{
 		data->raycast.tex_y = (int)tex_p & 63;
