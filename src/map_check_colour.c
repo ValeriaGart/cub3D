@@ -42,6 +42,7 @@ char	*set_colour(char *line, int *i, int *arg, int *comma)
 		free(which_colour);
 		return (NULL);
 	}
+	(*i)++;
 	return (which_colour);
 }
 
@@ -59,11 +60,8 @@ int	comma_colour(char *line, int i, int arg, int comma)
 		i++;
 	}
 	red = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
-	i++;
 	green = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
-	i++;
 	blue = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
-	i++;
 	temp = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
 	if ((red < 0 || red > 255) || (green < 0 || green > 255) || (blue < 0
 			|| blue > 255) || comma != 2 || arg != 3)

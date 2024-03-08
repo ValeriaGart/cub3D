@@ -2,11 +2,16 @@
 
 void	ft_put_pixel_small(t_data *data, int x, int y, int colour)
 {
-	int offset;
+	int	offset;
 
 	offset = 400;
 	(void)y;
 	(void)x;
+	/*offset = ((y * WIDTH_SMALL) + x) * 4;//y * ((WIDTH_SMALL * 2)
+		+ (HEIGHT_SMALL * 2)) + (x * (data->small_w.bits_per_pixel / 8));
+	offset = (y * (HEIGHT_SMALL / data->map->y_map)) * (x * (WIDTH_SMALL
+				/ data->map->x_map));
+	*((unsigned int *)(offset + (&(data->small_w))->addr)) = colour;*/
 	*((unsigned int *)(offset + (&(data->small_w))->addr)) = colour;
 }
 

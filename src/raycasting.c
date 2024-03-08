@@ -28,7 +28,7 @@ void	ft_hit_where(t_rc *raycast, t_data *data)
 			raycast->lineheight = (int)(HEIGHT_Y / raycast->perpWallDist);
 			return ;
 		}
-		if(data->map->real_map[raycast->mapY][raycast->mapX] > '0')
+		if (data->map->real_map[raycast->mapY][raycast->mapX] > '0')
 			raycast->hit = 1;
 	}
 	if (!raycast->side)
@@ -40,25 +40,29 @@ void	ft_hit_where(t_rc *raycast, t_data *data)
 
 void	ft_step_calc(t_rc *raycast)
 {
-	if(raycast->rayDirX < 0)
+	if (raycast->rayDirX < 0)
 	{
 		raycast->stepX = -1;
-		raycast->sideDistX = (raycast->posX - raycast->mapX) * raycast->deltaDistX;
+		raycast->sideDistX = (raycast->posX - raycast->mapX)
+			* raycast->deltaDistX;
 	}
 	else
 	{
 		raycast->stepX = 1;
-		raycast->sideDistX = (raycast->mapX + 1.0 - raycast->posX) * raycast->deltaDistX;
+		raycast->sideDistX = (raycast->mapX + 1.0 - raycast->posX)
+			* raycast->deltaDistX;
 	}
-	if(raycast->rayDirY < 0)
+	if (raycast->rayDirY < 0)
 	{
 		raycast->stepY = -1;
-		raycast->sideDistY = (raycast->posY - raycast->mapY) * raycast->deltaDistY;
+		raycast->sideDistY = (raycast->posY - raycast->mapY)
+			* raycast->deltaDistY;
 	}
 	else
 	{
 		raycast->stepY = 1;
-		raycast->sideDistY = (raycast->mapY + 1.0 - raycast->posY) * raycast->deltaDistY;
+		raycast->sideDistY = (raycast->mapY + 1.0 - raycast->posY)
+			* raycast->deltaDistY;
 	}
 }
 
@@ -94,7 +98,7 @@ int	ft_raycasting(t_data *data)
 
 	raycast = &(data->raycast);
 	x = 0;
-	while(x < WIDTH_X)
+	while (x < WIDTH_X)
 	{
 		ft_init_raycast_loop(data, x);
 		ft_step_calc(&(data->raycast));

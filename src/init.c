@@ -35,7 +35,6 @@ void	ft_init_raycast(t_data *data)
 
 void	init_map(t_map *map)
 {
-	map->ln = NULL;
 	map->sou = NULL;
 	map->nor = NULL;
 	map->eas = NULL;

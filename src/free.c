@@ -26,6 +26,13 @@ void	*ft_map_free(t_map *map)
 			save_free((void **)&map->maps[i]);
 		save_free((void **)&map->maps);
 	}
+	if (map->real_map)
+	{
+		i = -1;
+		while (map->real_map[++i])
+			save_free((void **)&map->real_map[i]);
+		save_free((void **)&map->real_map);
+	}
 	save_free((void **)&map);
 	return (NULL);
 }
