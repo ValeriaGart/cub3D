@@ -61,8 +61,8 @@ typedef struct s_img
 
 typedef struct s_plr
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 	float	delta_x;
 	float	delta_y;
 	float	angle;
@@ -183,6 +183,7 @@ int			ft_strcmp(char *s1, char *s2);
 int			ft_atoi_from_malloc(char *str);
 
 /* window.c */
+void		ft_put_img_on_window(t_data *data, t_img *img, int x, int y);
 int			ft_new_img(t_data *data, t_img *img, int x, int y);
 int			ft_open_window(t_data *data);
 int			ft_store_imgs(t_data *data);
