@@ -4,9 +4,9 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	ft_set_data(&data);
 	if (ac != 2)
 		return (ft_error_msg("Wrong number of arguments\n"), 1);
+	ft_set_data(&data);
 	if (ft_map_check(av, &data) || ft_square_map(data.map->real_map, data.map,
 			&data))
 	{
