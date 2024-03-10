@@ -124,6 +124,7 @@ void		*ft_error_msg(char *err);
 /* free.c */
 void		save_free(void **ptr);
 void		*ft_map_free(t_map *map);
+int			ft_destroy_textures(t_data *data);
 int			ft_free_window(t_data *data);
 int			ft_free_all(t_data *data);
 
@@ -161,7 +162,7 @@ int			ft_raycasting(t_data *data);
 int			ft_square_map(char **map, t_map *maps, t_data *data);
 void		ft_put_pixel_raycast(t_data *data, int colour, int z);
 void		ft_drawtheline(int x, int y, t_data *data, int colour);
-void	ft_draw_pic(int x, int y, t_data *data, int colour, int real_x);
+void		ft_draw_pic(int x, int y, t_data *data, int real_x);
 
 // real_map_check.c
 int			first_last_line(t_map *map);

@@ -33,6 +33,9 @@ OBJS = $(SRCS:.c=.o)
 
 all:    $(NAME)	
 
+mlx:
+	git clone https://github.com/42Paris/minilibx-linux.git
+
 $(NAME): $(OBJS) #$(OLINE)
 		$(MAKE) all bonus -C ./libft
 		$(MAKE) -C ./minilibx-linux

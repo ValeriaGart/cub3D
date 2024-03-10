@@ -70,9 +70,7 @@ void	ft_calc_put_line(t_rc *raycast, t_data *data, int x)
 {
 	int	draw_start;
 	int	draw_end;
-	int	color;
 
-	color = 0;
 	draw_start = -raycast->lineheight / 2 + HEIGHT_Y / 2;
 	if (draw_start < 0)
 		draw_start = 0;
@@ -89,15 +87,13 @@ void	ft_calc_put_line(t_rc *raycast, t_data *data, int x)
 		raycast->what_side = 2;
 	else
 		raycast->what_side = 3;
-	ft_draw_pic(draw_start, draw_end, data, color, x);
+	ft_draw_pic(draw_start, draw_end, data, x);
 }
 
 int	ft_raycasting(t_data *data)
 {
-	t_rc	*raycast;
 	int		x;
 
-	raycast = &(data->raycast);
 	x = 0;
 	while (x < WIDTH_X)
 	{

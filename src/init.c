@@ -27,8 +27,6 @@ void	ft_init_raycast(t_data *data)
 		data->raycast.posX = data->plr.x;
 	if (data->raycast.posY == 0)
 		data->raycast.posY = data->plr.y;
-	//data->raycast.dirX = 0; funny version
-	//data->raycast.dirY = 1;
 	data->raycast.dirX = -1;
 	data->raycast.dirY = 0;
 	data->raycast.planeX = 0;

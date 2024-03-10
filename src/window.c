@@ -27,22 +27,24 @@ int	ft_open_window(t_data *data)
 	if (data->win_ptr == NULL)
 	{
 		mlx_destroy_display(data->mlx_ptr);
+		if (data->mlx_ptr)
+			free(data->mlx_ptr);
 		return (ft_putstr_fd("Error\nMlx window creating failed", 2), 1);
 	}
 	return (0);
 }
 
-t_img	*ft_new_texture(char *path, t_data *data, t_img *new)
+void	*ft_new_texture(char *path, t_data *data, t_img *new)
 {
 	//TODO: Valeria change when path is valid
 	(void)path;
-	new->img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/lionwall.xpm",
+	new->img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/tex_1.xpm",
 			&new->width, &new->height);
 	if (!new->img)
 		return (ft_putstr_fd("Error\nMlx image creation failed\n", 2), NULL);
 	new->addr = mlx_get_data_addr(new->img, &new->bits_per_pixel,
 			&new->line_size, &new->endian);
-	return (new);
+	return (new->img);
 }
 
 int	ft_store_imgs(t_data *data)

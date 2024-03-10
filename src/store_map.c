@@ -40,14 +40,24 @@ void	error_map_free(t_map *map, int *j)
 	map->real_map = NULL;
 }
 
-char	**store_real_map(t_map *map, int *i, int k)
+void	ft_get_longest_line(t_map *map, int i)
 {
-	int	j;
+	while (i < map->size_list)
+	{
+		if ((int)ft_strlen(map->maps[i]) > map->x_map)
+			map->x_map = (int)ft_strlen(map->maps[i]);
+		i++;
+	}
+}
 
-	j = -1;
+char	**store_real_map(t_map *map, int *i, int k, int j)
+{
+	ft_get_longest_line(map, *i);
 	while (*i < map->size_list)
 	{
-		map->real_map[++j] = ft_strdup(map->maps[*i]);
+		map->real_map[++j] = ft_calloc(map->x_map + 1, sizeof(char));
+		ft_strlcpy(map->real_map[j], map->maps[*i],
+			ft_strlen(map->maps[*i]) + 1);
 		if (!map->real_map[j])
 		{
 			error_map_free(map, &j);
@@ -62,8 +72,6 @@ char	**store_real_map(t_map *map, int *i, int k)
 			error_map_free(map, &j);
 			return (ft_error_msg("Map is empty in store map\n"), NULL);
 		}
-		if ((int)ft_strlen(map->real_map[j]) > map->x_map)
-			map->x_map = (int)ft_strlen(map->real_map[j]);
 		(*i)++;
 	}
 	return (map->real_map);
@@ -86,7 +94,7 @@ char	**get_real_map(t_map *map)
 			map->real_map = ft_calloc(sizeof(char *), (map->y_map + 1));
 			if (!map->real_map)
 				return (NULL);
-			map->real_map = store_real_map(map, &i, 0);
+			map->real_map = store_real_map(map, &i, 0, -1);
 			if (!map->real_map)
 				return (ft_error_msg("Real map cant be created in grm\n"),
 					NULL);

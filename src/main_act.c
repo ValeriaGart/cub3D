@@ -87,5 +87,10 @@ int	ft_main_act(t_data *data)
 	ft_put_img_on_window(data, &(data->img), 0, 0);
 	if (data->smallw_enabled == true)
 		ft_put_img_on_window(data, &(data->small_w), 0, (HEIGHT_Y / 4) * 3);
+	else
+	{
+		mlx_destroy_image(data->mlx_ptr, data->small_w.img);
+		data->small_w.img = NULL;
+	}
 	return (0);
 }

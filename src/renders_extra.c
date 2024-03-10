@@ -1,39 +1,26 @@
 #include "../incl/cub3d.h"
 
-void	ft_fill_spaces(char **map, int i, t_map *maps)
-{
-	int	j;
-
-	j = 0;
-	while (map[i][j])
-	{
-		if (ft_isspace(map[i][j]))
-			map[i][j] = '1';
-		j++;
-	}
-	while (j < maps->x_map)
-	{
-		map[i][j] = '1';
-		j++;
-	}
-}
-
 int	ft_square_map(char **map, t_map *maps, t_data *data)
 {
-	char	*new;
 	int		i;
+	int		j;
 
 	i = 0;
-	new = NULL;
+	j = 0;
 	while (map[i])
 	{
-		new = map[i];
-		map[i] = ft_calloc(sizeof(char), maps->x_map + 1);
-		if (!map[i])
-			return (1);
-		ft_strlcpy(map[i], new, ft_strlen(new));
-		free(new);
-		ft_fill_spaces(map, i, maps);
+		j = 0;
+		while (map[i][j])
+		{
+			if (ft_isspace(map[i][j]))
+				map[i][j] = '1';
+			j++;
+		}
+		while (j < maps->x_map)
+		{
+			map[i][j] = '1';
+			j++;
+		}
 		i++;
 	}
 	data->map->real_map = map;
@@ -47,15 +34,6 @@ void	ft_put_pixel_raycast(t_data *data, int colour, int z)
 	offset = z * 4;
 	*((unsigned int *)(offset + (&(data->img))->addr)) = colour;
 }
-
-/*void	ft_drawtheline(int x, int y, t_data *data, int colour)
-{
-	while (x < y)
-	{
-		ft_put_pixel_raycast(data, colour, x);
-		x += WIDTH_X;
-	}
-}*/
 
 double	get_step(t_rc *rc)
 {
@@ -73,10 +51,11 @@ double	get_step(t_rc *rc)
 }
 
 //embrace the chaos version
-/*void	ft_draw_pic(int x, int y, t_data *data, int colour, int real_x)
+/*void	ft_draw_pic(int x, int y, t_data *data, int real_x)
 {
 	double	step;
 	double	tex_p;
+	int	colour;
 
 	(void)real_x;
 	step = get_step(&data->raycast);
@@ -93,10 +72,11 @@ double	get_step(t_rc *rc)
 	}
 }*/
 
-void	ft_draw_pic(int x, int y, t_data *data, int colour, int real_x)
+void	ft_draw_pic(int x, int y, t_data *data, int real_x)
 {
 	double	step;
 	double	tex_p;
+	int		colour;
 
 	step = get_step(&data->raycast);
 	tex_p = (((x - real_x) / WIDTH_X) - HEIGHT_Y
