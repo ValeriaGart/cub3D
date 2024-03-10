@@ -180,6 +180,7 @@ int			check_map_empty(t_map *map, int i);
 char		**get_real_map(t_map *map);
 
 // utils.c
+int			ft_emergency_exit(t_data *data);
 int			ft_strcmp(char *s1, char *s2);
 int			ft_atoi_from_malloc(char *str);
 

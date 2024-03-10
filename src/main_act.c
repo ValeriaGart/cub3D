@@ -48,7 +48,8 @@ void	ft_small_w(t_data **data)
 	unsigned int	i;
 	unsigned int	n;
 
-	ft_new_img(*data, &(*data)->small_w, WIDTH_SMALL, HEIGHT_SMALL);
+	if (ft_new_img(*data, &(*data)->small_w, WIDTH_SMALL, HEIGHT_SMALL))
+		ft_emergency_exit(*data);
 	ptr = (unsigned int *)(&((*data)->small_w))->addr;
 	i = WIDTH_SMALL * HEIGHT_SMALL + 1;
 	n = 0;
@@ -80,7 +81,8 @@ int	ft_draw_updown(t_data *data)
 
 int	ft_main_act(t_data *data)
 {
-	ft_new_img(data, &data->img, WIDTH_X, HEIGHT_Y);
+	if (ft_new_img(data, &data->img, WIDTH_X, HEIGHT_Y))
+		ft_emergency_exit(data);
 	ft_draw_updown(data);
 	ft_raycasting(data);
 	ft_small_w(&data);

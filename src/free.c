@@ -57,10 +57,10 @@ int	ft_destroy_textures(t_data *data)
 int	ft_free_window(t_data *data)
 {
 	if (data->img.img)
-		mlx_destroy_image(data->win_ptr, data->img.img);
+		mlx_destroy_image(data->mlx_ptr, data->img.img);
 	ft_destroy_textures(data);
 	if (data->small_w.img)
-		mlx_destroy_image(data->win_ptr, data->small_w.img);
+		mlx_destroy_image(data->mlx_ptr, data->small_w.img);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
