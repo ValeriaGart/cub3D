@@ -1,5 +1,12 @@
 #include "../incl/cub3d.h"
 
+int ft_emergency_exit(t_data *data)
+{
+	ft_map_free(data->map);
+	ft_free_window(data);
+	exit(0);
+}
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -16,9 +23,9 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((s1[i]) - s2[i]);
 }
 
-int ft_atoi_from_malloc(char *str)
+int	ft_atoi_from_malloc(char *str)
 {
-	int result;
+	int	result;
 
 	result = ft_atoi(str);
 	free(str);

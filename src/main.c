@@ -3,24 +3,20 @@
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int		i;
 
-	ft_set_data(&data);
 	if (ac != 2)
 		return (ft_error_msg("Wrong number of arguments\n"), 1);
+	ft_set_data(&data);
 	if (ft_map_check(av, &data) || ft_square_map(data.map->real_map, data.map,
 			&data))
 	{
 		ft_map_free(data.map);
 		return (1);
 	}
-	i = -1;
-	while (data.map->real_map[++i])
-		printf("%s\n", data.map->real_map[i]);
 	ft_set_plr(data.map, &data);
 	printf("The game is running! 🤩\n");
 	if (ft_open_window(&data) || ft_store_imgs(&data))
-		return (ft_map_free(data.map), 1);
+		return (ft_free_all(&data));
 	ft_init_raycast(&data);
 	ft_main_act(&data);
 	mlx_hook(data.win_ptr, 17, 1L << 2, &handle_x, &data);

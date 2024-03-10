@@ -49,4 +49,10 @@ void	ft_set_data(t_data *data)
 	data->smallw_enabled = true;
 	data->raycast.posX = 0;
 	data->raycast.posY = 0;
+	data->img.img = NULL;
+	data->small_w.img = NULL;
+	data->ea.img = NULL;
+	data->we.img = NULL;
+	data->no.img = NULL;
+	data->so.img = NULL;
 }
