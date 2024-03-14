@@ -51,8 +51,6 @@ int	comma_colour(char *line, int i, int arg, int comma)
 	int	red;
 	int	green;
 	int	blue;
-	//yen maybe delete temp?
-	//int	temp;
 
 	while (ft_isspace(line[i]))
 	{
@@ -63,7 +61,6 @@ int	comma_colour(char *line, int i, int arg, int comma)
 	red = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
 	green = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
 	blue = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
-	//temp = ft_atoi_from_malloc(set_colour(line, &i, &arg, &comma));
 	if ((red < 0 || red > 255) || (green < 0 || green > 255) || (blue < 0
 			|| blue > 255) || comma != 2 || arg != 3)
 	{

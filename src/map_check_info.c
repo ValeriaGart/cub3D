@@ -31,12 +31,6 @@ int	check_inforhead(t_map *map, int i, int j)
 		if (check_colour(map, &i, &j))
 			return (1);
 		check_direction_name(map, &i, &j);
-		//check after the direction name and before the first '.' there should be space
-		//if not return error
-		// j += 2;
-		// printf("map->maps[i][j] = %c\n", map->maps[i][j]);
-		// if (!ft_isspace(map->maps[i][j]) || map->maps[i][j] != '.')
-		// 	return (ft_error_msg("Map info doesnt start path correctly\n"), 1);
 		i++;
 	}
 	if (map->nor == NULL || map->sou == NULL || map->wes == NULL
