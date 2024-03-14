@@ -7,19 +7,23 @@ t_list	*create_line_list(t_map *map)
 	t_list	*new_node;
 
 	lines_list = NULL;
-	tmp = get_next_line(map->fd);
-	while (tmp)
+	tmp = get_next_line(map->fd, 0);
+	while (tmp && *tmp)
 	{
 		new_node = ft_lstnew(tmp);
 		if (!new_node)
 		{
 			ft_lstclear(&lines_list, free);
-			ft_putstr_fd("Error\nList cant be created\n", 2);
-			return (NULL);
+			get_next_line(map->fd, 1);
+			return (ft_error_msg("List cant be created\n"));
 		}
 		ft_lstadd_back(&lines_list, new_node);
-		tmp = get_next_line(map->fd);
+		tmp = get_next_line(map->fd, 0);
 	}
+	get_next_line(map->fd, 1);
+	if (!tmp)
+		return (ft_lstclear(&lines_list, free),
+			ft_error_msg("Get_next_line failed\n"));
 	return (lines_list);
 }
 

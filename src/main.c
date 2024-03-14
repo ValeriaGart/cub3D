@@ -10,7 +10,7 @@ int	main(int ac, char **av)
 	if (ft_map_check(av, &data) || ft_square_map(data.map->real_map, data.map,
 			&data))
 	{
-		ft_map_free(data.map);
+		ft_map_free(data.map, -1);
 		return (1);
 	}
 	ft_set_plr(data.map, &data);

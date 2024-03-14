@@ -1,8 +1,8 @@
+F 240, 221, 151
 SO ./textures/south.xpm
 NO ./textures/north.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
-F 240, 221, 151
 C 194, 194, 209
 
 1111111

@@ -74,16 +74,14 @@ int	check_colour(t_map *map, int *i, int *j)
 {
 	if (map->maps[*i][*j] == 'C')
 	{
-		map->ceil = ft_strdup(map->maps[*i] + 1);
-		if (!map->ceil)
+		if (assign_tex_if_unique(&map->ceil, map, *i))
 			return (1);
 		(*j)++;
 		map->ceil_colour = comma_colour(&map->maps[*i][*j], 0, 0, 0);
 	}
 	else if (map->maps[*i][*j] == 'F')
 	{
-		map->floor = ft_strdup(map->maps[*i] + 1);
-		if (!map->floor)
+		if (assign_tex_if_unique(&map->floor, map, *i))
 			return (1);
 		(*j)++;
 		map->floor_colour = comma_colour(&map->maps[*i][*j], 0, 0, 0);

@@ -2,7 +2,7 @@
 
 int	ft_emergency_exit(t_data *data)
 {
-	ft_map_free(data->map);
+	ft_map_free(data->map, -1);
 	ft_free_window(data);
 	exit(0);
 }
