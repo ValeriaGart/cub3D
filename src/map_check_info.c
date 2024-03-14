@@ -1,6 +1,6 @@
 #include "../incl/cub3d.h"
 
-int		assign_tex_if_unique(char **direction, t_map *map, int i)
+int	assign_tex_if_unique(char **direction, t_map *map, int i)
 {
 	if (*direction != NULL)
 	{
@@ -15,7 +15,7 @@ int		assign_tex_if_unique(char **direction, t_map *map, int i)
 
 int	check_direction_name(t_map *map, int *i, int *j)
 {
-	int success;
+	int	success;
 
 	success = -1;
 	if ((map->maps[*i][*j] == 'S' && map->maps[*i][(*j)

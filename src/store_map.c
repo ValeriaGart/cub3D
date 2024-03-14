@@ -20,15 +20,13 @@ int	check_map_empty(t_map *map, int i)
 			map->maps[i][ft_strlen(map->maps[i]) - 1] = '\0';
 		if (!map->maps[i])
 		{
-			ft_lstclear(&tmp, free);
 			ft_putstr_fd("Error\nMalloc in map->maps failed\n", 2);
-			return (1);
+			return (ft_lstclear(&tmp, free), 1);
 		}
 		lines_list = lines_list->next;
 		i++;
 	}
-	ft_lstclear(&tmp, free);
-	return (0);
+	return (ft_lstclear(&tmp, free), 0);
 }
 
 void	error_map_free(t_map *map, int *j)
