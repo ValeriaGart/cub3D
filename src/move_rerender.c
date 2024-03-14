@@ -1,33 +1,31 @@
 #include "../incl/cub3d.h"
 
-void	ft_move_plr_map(t_map **map, int new_pos_x, int new_pos_y,
-		t_data **data)
+void	ft_move_sides(int keysym, t_data *data)
 {
-	int	x;
-	int	y;
+	t_rc	*raycast;
 
-	x = (*data)->plr.x;
-	y = (*data)->plr.y;
-	if (new_pos_x && (*map)->maps[y][x + new_pos_x] == '0')
+	raycast = &data->raycast;
+	if (keysym == XK_d)
 	{
-		(*map)->maps[y][x] = '0';
-		if (new_pos_x > 0)
-			(*data)->plr.direction = 'E';
-		else
-			(*data)->plr.direction = 'W';
-		(*data)->plr.x = x + new_pos_x;
-		(*map)->maps[y][x + new_pos_x] = (*data)->plr.direction;
+		if (data->map->real_map[(int)((data->raycast.pos_y + raycast->dir_x
+					* 0.3))][(int)(raycast->pos_x)] == '0')
+			raycast->pos_y += raycast->dir_x * 0.3;
+		if (data->map->real_map[(int)(data->raycast.pos_y)]
+				[(int)(data->raycast.pos_x - raycast->dir_y
+				* 0.3)] == '0')
+			raycast->pos_x -= raycast->dir_y * 0.3;
 	}
-	if (new_pos_y && (*map)->maps[y + new_pos_y][x] == '0')
+	else
 	{
-		(*map)->maps[y][x] = '0';
-		if (new_pos_y > 0)
-			(*data)->plr.direction = 'S';
-		else
-			(*data)->plr.direction = 'N';
-		(*data)->plr.y = y + new_pos_y;
-		(*map)->maps[y + new_pos_y][x] = (*data)->plr.direction;
+		if (data->map->real_map[(int)(data->raycast.pos_y - raycast->dir_x
+				* 0.3)][(int)(raycast->pos_x)] == '0')
+			raycast->pos_y -= raycast->dir_x * 0.3;
+		if (data->map->real_map[(int)(data->raycast.pos_y)]
+				[(int)(data->raycast.pos_x + raycast->dir_y
+				* 0.3)] == '0')
+			raycast->pos_x += raycast->dir_y * 0.3;
 	}
+	ft_main_act(data);
 }
 
 void	ft_rotate(t_rc *raycast, char direction)

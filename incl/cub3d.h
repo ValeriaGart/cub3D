@@ -146,6 +146,7 @@ int			check_real_map(t_map *map);
 int			ft_map_check(char **av, t_data *data);
 
 /* move_rerender.c */
+void		ft_move_sides(int keysym, t_data *data);
 void		ft_direction_button(char direction, t_data *data, t_rc *raycast);
 
 // path_check.c

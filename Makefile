@@ -2,7 +2,7 @@ LIBFT = ./libft/libft.a
 
 MLX = ./minilibx-linux/libmlx_Linux.a
 
-NAME = cub3D
+NAME = Cub3D
 
 SRCS =	src/data.c				\
 		src/error.c				\
