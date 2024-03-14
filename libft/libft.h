@@ -6,7 +6,7 @@
 /*   By: ynguyen <ynguyen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:15:54 by ynguyen           #+#    #+#             */
-/*   Updated: 2024/02/11 16:50:32 by ynguyen          ###   ########.fr       */
+/*   Updated: 2024/03/14 18:46:09 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_list
 
 size_t				ft_strlen(const char *s);
 char				*ft_stringjoin(char *s1, char *s2);
-char				*get_next_line(int fd);
+char				*get_next_line(int fd, int freee);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
 long				ft_atol(char *str);
 char				*ft_strdup(const char *s);

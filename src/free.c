@@ -9,11 +9,10 @@ void	save_free(void **ptr)
 	}
 }
 
-void	*ft_map_free(t_map *map)
+void	*ft_map_free(t_map *map, int i)
 {
-	int	i;
-
-	i = -1;
+	if (!map)
+		return (NULL);
 	save_free((void **)&map->nor);
 	save_free((void **)&map->sou);
 	save_free((void **)&map->wes);
@@ -73,6 +72,6 @@ int	ft_free_window(t_data *data)
 
 int	ft_free_all(t_data *data)
 {
-	ft_map_free(data->map);
+	ft_map_free(data->map, -1);
 	return (ft_free_window(data));
 }

@@ -6,6 +6,8 @@ int	check_map_empty(t_map *map, int i)
 	t_list	*tmp;
 
 	lines_list = create_line_list(map);
+	if (!lines_list)
+		return (1);
 	tmp = lines_list;
 	map->size_list = ft_lstsize(lines_list);
 	map->maps = ft_calloc((map->size_list + 1), sizeof(char *));
@@ -14,7 +16,7 @@ int	check_map_empty(t_map *map, int i)
 	while (lines_list)
 	{
 		map->maps[i] = ft_strdup(lines_list->content);
-		if (map->maps[i][ft_strlen(map->maps[i]) - 1] == '\n')
+		if (map->maps[i] && map->maps[i][ft_strlen(map->maps[i]) - 1] == '\n')
 			map->maps[i][ft_strlen(map->maps[i]) - 1] = '\0';
 		if (!map->maps[i])
 		{
@@ -56,13 +58,13 @@ char	**store_real_map(t_map *map, int *i, int k, int j)
 	while (*i < map->size_list)
 	{
 		map->real_map[++j] = ft_calloc(map->x_map + 1, sizeof(char));
-		ft_strlcpy(map->real_map[j], map->maps[*i],
-			ft_strlen(map->maps[*i]) + 1);
 		if (!map->real_map[j])
 		{
 			error_map_free(map, &j);
 			return (ft_error_msg("Real map cant be created\n"), NULL);
 		}
+		ft_strlcpy(map->real_map[j], map->maps[*i],
+			ft_strlen(map->maps[*i]) + 1);
 		k = 0;
 		while (map->real_map[j][k] && map->real_map[j][k] != '\n'
 			&& (map->real_map[j][k] == ' ' || map->real_map[j][k] == '\n'))

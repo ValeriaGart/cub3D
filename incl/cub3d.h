@@ -115,7 +115,7 @@ void		*ft_error_msg(char *err);
 
 /* free.c */
 void		save_free(void **ptr);
-void		*ft_map_free(t_map *map);
+void		*ft_map_free(t_map *map, int i);
 int			ft_destroy_textures(t_data *data);
 int			ft_free_window(t_data *data);
 int			ft_free_all(t_data *data);
@@ -133,6 +133,7 @@ void		ft_small_w(t_data **data);
 int			check_colour(t_map *map, int *i, int *j);
 
 // map_check_info.c
+int			assign_tex_if_unique(char **direction, t_map *map, int i);
 int			check_inforhead(t_map *map, int i, int j);
 int			check_four_paths(t_map *map);
 

@@ -1,19 +1,38 @@
 #include "../incl/cub3d.h"
 
-void	check_direction_name(t_map *map, int *i, int *j)
+int		assign_tex_if_unique(char **direction, t_map *map, int i)
 {
-	if (map->sou == NULL && (map->maps[*i][*j] == 'S' && map->maps[*i][(*j)
+	if (*direction != NULL)
+	{
+		ft_putstr_fd("Error\nDuplicate texture path\n", 2);
+		return (1);
+	}
+	*direction = ft_strdup(map->maps[i]);
+	if (!*direction)
+		return (ft_error_msg("Error\nMalloc failed\n"), 1);
+	return (0);
+}
+
+int	check_direction_name(t_map *map, int *i, int *j)
+{
+	int success;
+
+	success = -1;
+	if ((map->maps[*i][*j] == 'S' && map->maps[*i][(*j)
 		+ 1] == 'O' && map->maps[*i][(*j) + 2] == ' '))
-		map->sou = ft_strdup(map->maps[*i]);
-	else if (map->nor == NULL && (map->maps[*i][*j] == 'N' && map->maps[*i][(*j)
+		success = assign_tex_if_unique(&(map->sou), map, *i);
+	else if ((map->maps[*i][*j] == 'N' && map->maps[*i][(*j)
 		+ 1] == 'O' && map->maps[*i][(*j) + 2] == ' '))
-		map->nor = ft_strdup(map->maps[*i]);
-	else if (map->wes == NULL && (map->maps[*i][*j] == 'W' && map->maps[*i][(*j)
+		success = assign_tex_if_unique(&(map->nor), map, *i);
+	else if ((map->maps[*i][*j] == 'W' && map->maps[*i][(*j)
 		+ 1] == 'E' && map->maps[*i][(*j) + 2] == ' '))
-		map->wes = ft_strdup(map->maps[*i]);
-	else if (map->eas == NULL && (map->maps[*i][*j] == 'E' && map->maps[*i][(*j)
+		success = assign_tex_if_unique(&(map->wes), map, *i);
+	else if ((map->maps[*i][*j] == 'E' && map->maps[*i][(*j)
 		+ 1] == 'A' && map->maps[*i][(*j) + 2] == ' '))
-		map->eas = ft_strdup(map->maps[*i]);
+		success = assign_tex_if_unique(&(map->eas), map, *i);
+	if (success == 1)
+		return (1);
+	return (0);
 }
 
 int	check_inforhead(t_map *map, int i, int j)
@@ -30,7 +49,8 @@ int	check_inforhead(t_map *map, int i, int j)
 			j++;
 		if (check_colour(map, &i, &j))
 			return (1);
-		check_direction_name(map, &i, &j);
+		if (check_direction_name(map, &i, &j))
+			return (1);
 		i++;
 	}
 	if (map->nor == NULL || map->sou == NULL || map->wes == NULL
