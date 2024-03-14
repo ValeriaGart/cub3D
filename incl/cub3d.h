@@ -22,8 +22,8 @@
 # define RIGHT_KEY 65363
 
 # define PI 3.1415926535
-# define P2 PI/2
-# define P3 3*PI/2
+# define P2 PI / 2
+# define P3 3 * PI / 2
 # define DR 0.0174533
 # define WIDTH_X 640
 # define HEIGHT_Y 480
@@ -61,8 +61,8 @@ typedef struct s_img
 
 typedef struct s_plr
 {
-	double		x;
-	double		y;
+	double	x;
+	double	y;
 	float	delta_x;
 	float	delta_y;
 	float	angle;
@@ -142,6 +142,7 @@ int			check_colour(t_map *map, int *i, int *j);
 
 // map_check_info.c
 int			check_inforhead(t_map *map, int i, int j);
+int			check_four_paths(t_map *map);
 
 // map_check_utils.c
 t_list		*create_line_list(t_map *map);
@@ -154,6 +155,12 @@ int			ft_map_check(char **av, t_data *data);
 
 /* move_rerender.c */
 void		ft_direction_button(char direction, t_data *data, t_rc *raycast);
+
+// path_check.c
+int			check_path_south(t_map *map);
+int			check_path_north(t_map *map);
+int			check_path_west(t_map *map);
+int			check_path_east(t_map *map);
 
 /* raycasting */
 int			ft_raycasting(t_data *data);
