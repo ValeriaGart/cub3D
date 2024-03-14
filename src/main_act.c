@@ -58,8 +58,8 @@ void	ft_small_w(t_data **data)
 		*ptr++ = ft_is_not_empty(n, *data);
 		n++;
 	}
-	ft_put_pixel_small(*data, (*data)->raycast.posX,
-		(*data)->raycast.posY, 0xEE4B2B);
+	ft_put_pixel_small(*data, (*data)->raycast.pos_x,
+		(*data)->raycast.pos_y, 0xEE4B2B);
 }
 
 int	ft_draw_updown(t_data *data)

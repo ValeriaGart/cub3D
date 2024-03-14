@@ -26,29 +26,30 @@ int	start_check_xpm(char *line)
 
 int	check_path_south(t_map *map)
 {
-	char	*line;
+	//char	*line;
 	int		i;
 	int		k;
 
-	line = ft_calloc(ft_strlen(map->sou), 1);
-	if (!line)
-		return (1);
+	//line = ft_calloc(ft_strlen(map->sou), 1);
+	//if (!line)
+	//	return (1);
 	i = 2;
 	k = -1;
-	while (map->sou && ft_isspace(map->sou[i]))
+	while (map->sou && (ft_isspace(map->sou[i]) && map->sou[i] != '\n'))
 		i++;
 	while (map->sou[i])
 	{
-		line[++k] = map->sou[i];
+		map->sou[++k] = map->sou[i];
 		i++;
 	}
-	if (start_check_xpm(line))
+	map->sou[++k] = '\0';
+	if (start_check_xpm(map->sou))
 	{
-		free(line);
+		//free(line);
 		return (1);
 	}
-	free(map->sou);
-	map->sou = line;
+	//free(map->sou);
+	//map->sou = line;
 	return (0);
 }
 

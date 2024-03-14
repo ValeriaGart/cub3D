@@ -2,16 +2,16 @@
 
 void	ft_check_side_hit(t_rc *raycast)
 {
-	if (raycast->sideDistX < raycast->sideDistY)
+	if (raycast->side_dist_x < raycast->side_dist_y)
 	{
-		raycast->sideDistX += raycast->deltaDistX;
-		raycast->mapX += raycast->stepX;
+		raycast->side_dist_x += raycast->delta_dist_x;
+		raycast->map_x += raycast->step_x;
 		raycast->side = 0;
 	}
 	else
 	{
-		raycast->sideDistY += raycast->deltaDistY;
-		raycast->mapY += raycast->stepY;
+		raycast->side_dist_y += raycast->delta_dist_y;
+		raycast->map_y += raycast->step_y;
 		raycast->side = 1;
 	}
 }
@@ -21,48 +21,48 @@ void	ft_hit_where(t_rc *raycast, t_data *data)
 	while (raycast->hit == 0)
 	{
 		ft_check_side_hit(raycast);
-		if ((raycast->mapX < 0 || raycast->mapX > data->map->x_map - 1)
-			|| (raycast->mapY < 0 || raycast->mapY > data->map->y_map - 1))
+		if ((raycast->map_x < 0 || raycast->map_x > data->map->x_map - 1)
+			|| (raycast->map_y < 0 || raycast->map_y > data->map->y_map - 1))
 		{
-			raycast->perpWallDist = __DBL_MAX__;
-			raycast->lineheight = (int)(HEIGHT_Y / raycast->perpWallDist);
+			raycast->perpwalldist = __DBL_MAX__;
+			raycast->lineheight = (int)(HEIGHT_Y / raycast->perpwalldist);
 			return ;
 		}
-		if (data->map->real_map[raycast->mapY][raycast->mapX] > '0')
+		if (data->map->real_map[raycast->map_y][raycast->map_x] > '0')
 			raycast->hit = 1;
 	}
 	if (!raycast->side)
-		raycast->perpWallDist = (raycast->sideDistX - raycast->deltaDistX);
+		raycast->perpwalldist = (raycast->side_dist_x - raycast->delta_dist_x);
 	else
-		raycast->perpWallDist = (raycast->sideDistY - raycast->deltaDistY);
-	raycast->lineheight = (int)(HEIGHT_Y / raycast->perpWallDist);
+		raycast->perpwalldist = (raycast->side_dist_y - raycast->delta_dist_y);
+	raycast->lineheight = (int)(HEIGHT_Y / raycast->perpwalldist);
 }
 
 void	ft_step_calc(t_rc *raycast)
 {
-	if (raycast->rayDirX < 0)
+	if (raycast->ray_dir_x < 0)
 	{
-		raycast->stepX = -1;
-		raycast->sideDistX = (raycast->posX - raycast->mapX)
-			* raycast->deltaDistX;
+		raycast->step_x = -1;
+		raycast->side_dist_x = (raycast->pos_x - raycast->map_x)
+			* raycast->delta_dist_x;
 	}
 	else
 	{
-		raycast->stepX = 1;
-		raycast->sideDistX = (raycast->mapX + 1.0 - raycast->posX)
-			* raycast->deltaDistX;
+		raycast->step_x = 1;
+		raycast->side_dist_x = (raycast->map_x + 1.0 - raycast->pos_x)
+			* raycast->delta_dist_x;
 	}
-	if (raycast->rayDirY < 0)
+	if (raycast->ray_dir_y < 0)
 	{
-		raycast->stepY = -1;
-		raycast->sideDistY = (raycast->posY - raycast->mapY)
-			* raycast->deltaDistY;
+		raycast->step_y = -1;
+		raycast->side_dist_y = (raycast->pos_y - raycast->map_y)
+			* raycast->delta_dist_y;
 	}
 	else
 	{
-		raycast->stepY = 1;
-		raycast->sideDistY = (raycast->mapY + 1.0 - raycast->posY)
-			* raycast->deltaDistY;
+		raycast->step_y = 1;
+		raycast->side_dist_y = (raycast->map_y + 1.0 - raycast->pos_y)
+			* raycast->delta_dist_y;
 	}
 }
 
@@ -79,11 +79,11 @@ void	ft_calc_put_line(t_rc *raycast, t_data *data, int x)
 		draw_end = HEIGHT_Y - 1;
 	draw_start = x + (draw_start * WIDTH_X);
 	draw_end = draw_end * WIDTH_X + x;
-	if (raycast->side == 1 && raycast->rayDirY < 0)
+	if (raycast->side == 1 && raycast->ray_dir_y < 0)
 		raycast->what_side = 0;
-	else if (!raycast->side && raycast->rayDirX > 0)
+	else if (!raycast->side && raycast->ray_dir_x > 0)
 		raycast->what_side = 1;
-	else if (raycast->side && raycast->rayDirY > 0)
+	else if (raycast->side && raycast->ray_dir_y > 0)
 		raycast->what_side = 2;
 	else
 		raycast->what_side = 3;

@@ -14,9 +14,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_set_plr(data.map, &data);
-	printf("The game is running! 🤩\n");
 	if (ft_open_window(&data) || ft_store_imgs(&data))
 		return (ft_free_all(&data));
+	printf("The game is running! 🤩\n");
 	ft_init_raycast(&data);
 	ft_main_act(&data);
 	mlx_hook(data.win_ptr, 17, 1L << 2, &handle_x, &data);

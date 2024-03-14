@@ -1,6 +1,6 @@
 #include "../incl/cub3d.h"
 
-int ft_emergency_exit(t_data *data)
+int	ft_emergency_exit(t_data *data)
 {
 	ft_map_free(data->map);
 	ft_free_window(data);

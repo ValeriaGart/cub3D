@@ -36,9 +36,7 @@ int	ft_open_window(t_data *data)
 
 void	*ft_new_texture(char *path, t_data *data, t_img *new)
 {
-	//TODO: Valeria change when path is valid
-	(void)path;
-	new->img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/tex_1.xpm",
+	new->img = mlx_xpm_file_to_image(data->mlx_ptr, path,
 			&new->width, &new->height);
 	if (!new->img)
 		return (ft_putstr_fd("Error\nMlx image creation failed\n", 2), NULL);
