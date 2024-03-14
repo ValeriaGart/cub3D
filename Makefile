@@ -15,6 +15,7 @@ SRCS =	src/data.c				\
 		src/map_check_utils.c	\
 		src/map_check.c			\
     	src/move_rerender.c		\
+		src/path_check.c		\
 		src/raycasting.c		\
 		src/renders_extra.c		\
 		src/real_map_check.c	\

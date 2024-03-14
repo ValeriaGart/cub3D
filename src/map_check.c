@@ -70,6 +70,8 @@ int	ft_map_check(char **av, t_data *data)
 	close(data->map->fd);
 	if (check_inforhead(data->map, 0, 0))
 		return (1);
+	else if (check_four_paths(data->map))
+		return (1);
 	else if (get_real_map(data->map) == NULL || check_real_map(data->map))
 		return (1);
 	return (0);
