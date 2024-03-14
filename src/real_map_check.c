@@ -92,14 +92,6 @@ int	check_zero(t_map *map)
 			{
 				if (when_is_wrong(map, i, j))
 					return (1);
-				else if (ft_strncmp(map->real_map[i], map->real_map[i - 1],
-						map->real_map[i][j]) == 0
-					|| ft_strncmp(map->real_map[i], map->real_map[i + 1],
-						map->real_map[i][j]) == 0)
-				{
-					ft_putstr_fd("Error\nMap is not closed for 0\n", 2);
-					return (1);
-				}
 			}
 		}
 	}
