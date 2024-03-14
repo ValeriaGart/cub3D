@@ -2,35 +2,35 @@
 
 void	ft_init_raycast_loop(t_data *data, int x)
 {
-	data->raycast.cameraX = ((2 * x) / (double)WIDTH_X) - 1;
-	data->raycast.rayDirX = data->raycast.dirX + data->raycast.planeX
-		* data->raycast.cameraX;
-	data->raycast.rayDirY = data->raycast.dirY + data->raycast.planeY
-		* data->raycast.cameraX;
-	data->raycast.mapX = (int)data->raycast.posX;
-	data->raycast.mapY = (int)data->raycast.posY;
-	if (data->raycast.rayDirX == 0)
-		data->raycast.deltaDistX = __DBL_MAX__;
+	data->raycast.camera_x = ((2 * x) / (double)WIDTH_X) - 1;
+	data->raycast.ray_dir_x = data->raycast.dir_x + data->raycast.plane_x
+		* data->raycast.camera_x;
+	data->raycast.ray_dir_y = data->raycast.dir_y + data->raycast.plane_y
+		* data->raycast.camera_x;
+	data->raycast.map_x = (int)data->raycast.pos_x;
+	data->raycast.map_y = (int)data->raycast.pos_y;
+	if (data->raycast.ray_dir_x == 0)
+		data->raycast.delta_dist_x = __DBL_MAX__;
 	else
-		data->raycast.deltaDistX = fabs(1.0 / data->raycast.rayDirX);
-	if (data->raycast.rayDirY == 0)
-		data->raycast.deltaDistY = __DBL_MAX__;
+		data->raycast.delta_dist_x = fabs(1.0 / data->raycast.ray_dir_x);
+	if (data->raycast.ray_dir_y == 0)
+		data->raycast.delta_dist_y = __DBL_MAX__;
 	else
-		data->raycast.deltaDistY = fabs(1.0 / data->raycast.rayDirY);
+		data->raycast.delta_dist_y = fabs(1.0 / data->raycast.ray_dir_y);
 	data->raycast.hit = 0;
-	data->raycast.perpWallDist = 0;
+	data->raycast.perpwalldist = 0;
 }
 
 void	ft_init_raycast(t_data *data)
 {
-	if (data->raycast.posX == 0)
-		data->raycast.posX = data->plr.x;
-	if (data->raycast.posY == 0)
-		data->raycast.posY = data->plr.y;
-	data->raycast.dirX = -1;
-	data->raycast.dirY = 0;
-	data->raycast.planeX = 0;
-	data->raycast.planeY = 0.66;
+	if (data->raycast.pos_x == 0)
+		data->raycast.pos_x = data->plr.x;
+	if (data->raycast.pos_y == 0)
+		data->raycast.pos_y = data->plr.y;
+	data->raycast.plane_x = 0.66 * (data->raycast.dir_x
+			* cos(0.5 * 3.14) - data->raycast.dir_y * sin(0.5 * 3.14));
+	data->raycast.plane_y = 0.66 * (data->raycast.dir_x
+			* sin(0.5 * 3.14) + data->raycast.dir_y * cos(0.5 * 3.14));
 }
 
 void	init_map(t_map *map)

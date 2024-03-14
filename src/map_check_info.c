@@ -4,16 +4,16 @@ void	check_direction_name(t_map *map, int *i, int *j)
 {
 	if (map->sou == NULL && (map->maps[*i][*j] == 'S' && map->maps[*i][(*j)
 		+ 1] == 'O' && map->maps[*i][(*j) + 2] == ' '))
-		map->sou = ft_strdup(map->maps[*i] + 1);
+		map->sou = ft_strdup(map->maps[*i]);
 	else if (map->nor == NULL && (map->maps[*i][*j] == 'N' && map->maps[*i][(*j)
 		+ 1] == 'O' && map->maps[*i][(*j) + 2] == ' '))
-		map->nor = ft_strdup(map->maps[*i] + 1);
+		map->nor = ft_strdup(map->maps[*i]);
 	else if (map->wes == NULL && (map->maps[*i][*j] == 'W' && map->maps[*i][(*j)
 		+ 1] == 'E' && map->maps[*i][(*j) + 2] == ' '))
-		map->wes = ft_strdup(map->maps[*i] + 1);
+		map->wes = ft_strdup(map->maps[*i]);
 	else if (map->eas == NULL && (map->maps[*i][*j] == 'E' && map->maps[*i][(*j)
 		+ 1] == 'A' && map->maps[*i][(*j) + 2] == ' '))
-		map->eas = ft_strdup(map->maps[*i] + 1);
+		map->eas = ft_strdup(map->maps[*i]);
 }
 
 int	check_inforhead(t_map *map, int i, int j)

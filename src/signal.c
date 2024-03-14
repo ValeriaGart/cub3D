@@ -1,6 +1,6 @@
 #include "../incl/cub3d.h"
 
-int handle_x(t_data *data)
+int	handle_x(t_data *data)
 {
 	ft_map_free(data->map);
 	ft_free_window(data);
@@ -11,7 +11,7 @@ int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		handle_x(data);
-	if (keysym == XK_e)
+	if (keysym == XK_m)
 	{
 		if (data->smallw_enabled == true)
 			data->smallw_enabled = false;

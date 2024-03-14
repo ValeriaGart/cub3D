@@ -16,15 +16,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# define DOWN_KEY 65364
-# define UP_KEY 65362
-# define LEFT_KEY 65361
-# define RIGHT_KEY 65363
 
-# define PI 3.1415926535
-# define P2 PI / 2
-# define P3 3 * PI / 2
-# define DR 0.0174533
 # define WIDTH_X 640
 # define HEIGHT_Y 480
 # define WIDTH_SMALL 160
@@ -71,30 +63,30 @@ typedef struct s_plr
 
 typedef struct s_rc
 {
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
 	int		side;
 	int		hit;
 	int		lineheight;
 	int		what_side;
 	int		tex;
 	int		tex_y;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perpwalldist;
 }			t_rc;
 
 typedef struct s_data
