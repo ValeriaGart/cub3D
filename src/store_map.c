@@ -31,6 +31,7 @@ int	check_map_empty(t_map *map, int i)
 
 void	error_map_free(t_map *map, int *j)
 {
+	printf("error_map_free\n");
 	while (*j >= 0 && map->real_map[*j])
 	{
 		free(map->real_map[*j]);
@@ -61,8 +62,8 @@ char	**store_real_map(t_map *map, int *i, int k, int j)
 			error_map_free(map, &j);
 			return (ft_error_msg("Real map cant be created\n"), NULL);
 		}
-		ft_strlcpy(map->real_map[j], map->maps[*i],
-			ft_strlen(map->maps[*i]) + 1);
+		ft_strlcpy(map->real_map[j], map->maps[*i], ft_strlen(map->maps[*i])
+			+ 1);
 		k = 0;
 		while (map->real_map[j][k] && map->real_map[j][k] != '\n'
 			&& (map->real_map[j][k] == ' ' || map->real_map[j][k] == '\n'))
@@ -96,8 +97,7 @@ char	**get_real_map(t_map *map)
 				return (NULL);
 			map->real_map = store_real_map(map, &i, 0, -1);
 			if (!map->real_map)
-				return (ft_error_msg("Real map cant be created in grm\n"),
-					NULL);
+				return (NULL);
 			i--;
 		}
 	}
