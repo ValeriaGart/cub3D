@@ -9,17 +9,12 @@ int	start_check_xpm(char *line)
 	k = 0;
 	while (line[k] != '\0')
 		k++;
-	while (k && ft_strchr(".xpm", line[k]))
+	while (k && line[k] != '.')
 		k--;
-	k++;
 	if (!line || !ft_strnstr(line + k, ".xpm", 4))
 		return (ft_error_msg("Map info is not a \".xpm\"  file\n"), 1);
-	k += 4;
-	while (line && line[k] != '\0')
-	{
-		if (!ft_isspace(line[k++]))
-			return (ft_error_msg("Map info has more than 1 \".xpm\"\n"), 1);
-	}
+	if (line[k + 4] != '\0')
+		return (ft_error_msg("Map info has sth after \".xpm\"\n"), 1);
 	return (0);
 }
 
