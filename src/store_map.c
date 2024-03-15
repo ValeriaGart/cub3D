@@ -31,7 +31,6 @@ int	check_map_empty(t_map *map, int i)
 
 void	error_map_free(t_map *map, int *j)
 {
-	printf("error_map_free\n");
 	while (*j >= 0 && map->real_map[*j])
 	{
 		free(map->real_map[*j]);
@@ -94,7 +93,7 @@ char	**get_real_map(t_map *map)
 			map->y_map = map->size_list - i;
 			map->real_map = ft_calloc(sizeof(char *), (map->y_map + 1));
 			if (!map->real_map)
-				return (NULL);
+				return (ft_error_msg("Real map is empty\n"), NULL);
 			map->real_map = store_real_map(map, &i, 0, -1);
 			if (!map->real_map)
 				return (NULL);
