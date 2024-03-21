@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:39:17 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:39:18 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:02 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 void	ft_player_found(t_data *data, t_map *map, int y, int x)
 {

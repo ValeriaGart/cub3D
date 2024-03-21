@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:24 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:25 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:45:08 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 int	check_map_empty(t_map *map, int i)
 {

@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:39:38 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:39:39 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:13 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 void	save_free(void **ptr)
 {

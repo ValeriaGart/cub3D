@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:06 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:07 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:41 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 void	ft_move_sides(int keysym, t_data *data)
 {

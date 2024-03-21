@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:39:59 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:00 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:35 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 t_list	*create_line_list(t_map *map)
 {

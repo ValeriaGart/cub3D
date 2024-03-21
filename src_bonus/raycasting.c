@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:12 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:13 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:48 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 void	ft_check_side_hit(t_rc *raycast)
 {
