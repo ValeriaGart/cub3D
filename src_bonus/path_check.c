@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:09 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:10 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:45 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 int	start_check_xpm(char *line)
 {

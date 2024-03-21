@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:31 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:32 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:45:16 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 void	ft_put_img_on_window(t_data *data, t_img *img, int x, int y)
 {

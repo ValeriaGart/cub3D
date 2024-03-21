@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:39:56 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:39:57 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:44:32 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "../incl/cub3d_bonus.h"
 
 int	assign_tex_if_unique(char **direction, t_map *map, int i)
 {
