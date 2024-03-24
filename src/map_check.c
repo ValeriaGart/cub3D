@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:02 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:40:03 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:01:47 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	ft_map_check(char **av, t_data *data)
 	if (data->map->fd < 0)
 	{
 		ft_putstr_fd("Error\nMap file not found\n", 2);
-		close(data->map->fd);
 		return (1);
 	}
 	else if (check_map_empty(data->map, 0))

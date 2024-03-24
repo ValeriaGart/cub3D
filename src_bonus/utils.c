@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:27 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:45:12 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:12:44 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	ft_atoi_from_malloc(char *str)
 {
 	int	result;
 
+	if (ft_strlen(str) > 3)
+		return (free(str), -1);
 	result = ft_atoi(str);
 	free(str);
 	return (result);

@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:40:31 by vharkush          #+#    #+#             */
-/*   Updated: 2024/03/21 17:45:16 by vharkush         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:14:52 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ int	ft_open_window(t_data *data)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH_X,
 			HEIGHT_Y, "Cub3D");
 	if (data->win_ptr == NULL)
-	{
-		mlx_destroy_display(data->mlx_ptr);
-		if (data->mlx_ptr)
-			free(data->mlx_ptr);
-		return (ft_putstr_fd("Error\nMlx window creating failed", 2), 1);
-	}
+		return (ft_putstr_fd("Error\nMlx window creating failed\n", 2), 1);
 	return (0);
 }
 
